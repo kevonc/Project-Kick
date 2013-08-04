@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  backers: 1
+  funding: 1
+  goal: 1
+  city_id: 1
+  category_id: 1
+
+two:
+  title: MyString
+  backers: 1
+  funding: 1
+  goal: 1
+  city_id: 1
+  category_id: 1
