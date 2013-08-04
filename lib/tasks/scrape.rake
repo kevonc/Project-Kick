@@ -1,29 +1,32 @@
-task :scrape_overall_recommended_links => :environment do
+require 'mechanize'
+
+task :scrape => :environment do
   desc "Scrape through Kickstarter Overall Recommended Page"
 
+  agent = Mechanize.new
   mass_url = "http://www.kickstarter.com/discover/recommended?page="
   project_links = []
 
-  for i in 1..3
+  # Specify page range
+  for i in 1..2
     page = agent.get(mass_url + i.to_s)
-    page.search(".project-thumbnail a").each do |page|
-      project_links << page.attr("href")
+    page.search(".project-thumbnail a").each do |project|
+      project_links << project.attr("href")
     end
   end
-end
-
-task :scrape_single_project_details => :environment do
-  desc "Scrape Single Project Page"
 
   project_url = "http://www.kickstarter.com"
-  title = []
-  fund = []
 
   project_links.each do |url|
     project_page = agent.get(project_url + url)
-    title << project_page.search("meta[property='og:title']").attr("content").text.to_s
-    fund << project_page.search("meta[property='twitter:data1']").attr("content").text.to_s
+    title = project_page.search("meta[property='og:title']").attr("content").text.to_s
+    backers = page.search("#backers_nav .count").children.attr("value").value.to_i
+    funding = page.search("meta[property='twitter:data1']").attr("content").text.gsub("$","").gsub(",","").to_i
+    goal = page.search("meta[property='twitter:label1']").attr("content").text.gsub("PLEDGED OF $","").gsub(",","").to_i
+    city_name = page.search("#project-metadata .location a").text.gsub("\n","")
+    city = City.find_or_create_by_name(city_name)
+    category_name = page.search("#project-metadata .category a").text.gsub("\n","")
+    category = Category.find_or_create_by_name(category_name)
+    project = Project.create(title: title, backers: backers, funding: funding, goal: goal, city_id: city.id, category_id: category.id)
   end
 end
-
-task :all => [:scrape_overall_recommended_links, :scrape_single_project_details]
