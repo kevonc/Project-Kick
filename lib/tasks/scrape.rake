@@ -1,20 +1,139 @@
 require 'mechanize'
 
-task :scrape => :environment do
+task :scrape_recommended => :environment do
   desc "Scrape through Kickstarter Overall Recommended Page"
 
   agent = Mechanize.new
   mass_url = "http://www.kickstarter.com/discover/recommended?page="
   project_links = []
 
-  # Specify page range
-  for i in 1..2
+  get_project_urls(agent, mass_url, project_links, 2) # max: 566
+  create_record(agent, project_links)
+end
+
+task :scrape_recently_launched => :environment do
+  desc "Scrape through Kickstarter Recently Launched Page"
+
+  agent = Mechanize.new
+  mass_url = "http://www.kickstarter.com/discover/recently-launched?page="
+  project_links = []
+
+  get_project_urls(agent, mass_url, project_links, 4) # max: 61
+  create_record(agent, project_links)
+end
+
+task :scrape_ending_soon => :environment do
+  desc "Scrape through Kickstarter Ending Soon Page"
+
+  agent = Mechanize.new
+  mass_url = "http://www.kickstarter.com/discover/ending-soon?page="
+  project_links = []
+
+  get_project_urls(agent, mass_url, project_links, 4) # max: 39
+  create_record(agent, project_links)
+end
+
+task :scrape_small_projects => :environment do
+  desc "Scrape through Kickstarter Small Projects Page"
+
+  agent = Mechanize.new
+  mass_url = "http://www.kickstarter.com/discover/small-projects?page="
+  project_links = []
+
+  get_project_urls(agent, mass_url, project_links, 20) # max: 17
+  create_record(agent, project_links)
+end
+
+task :scrape_each_category => :environment do
+  desc "Scrape through Kickstarter Individual Category Page"
+
+  agent = Mechanize.new
+  all_links = ['http://www.kickstarter.com/discover/categories/art/recommended?page=',
+               'http://www.kickstarter.com/discover/categories/art/popular?page=',
+               'http://www.kickstarter.com/discover/categories/art/most-funded?page=',
+               'http://www.kickstarter.com/discover/categories/art/successful?page=',
+
+               'http://www.kickstarter.com/discover/categories/comics/recommended?page=',
+               'http://www.kickstarter.com/discover/categories/comics/popular?page=',
+               'http://www.kickstarter.com/discover/categories/comics/most-funded?page=',
+               'http://www.kickstarter.com/discover/categories/comics/successful?page=',
+
+               'http://www.kickstarter.com/discover/categories/dance/recommended?page=',
+               'http://www.kickstarter.com/discover/categories/dance/popular?page=',
+               'http://www.kickstarter.com/discover/categories/dance/most-funded?page=',
+               'http://www.kickstarter.com/discover/categories/dance/successful?page=',
+
+               'http://www.kickstarter.com/discover/categories/design/recommended?page=',
+               'http://www.kickstarter.com/discover/categories/design/popular?page=',
+               'http://www.kickstarter.com/discover/categories/design/most-funded?page=',
+               'http://www.kickstarter.com/discover/categories/design/successful?page=',
+
+               'http://www.kickstarter.com/discover/categories/fashion/recommended?page=',
+               'http://www.kickstarter.com/discover/categories/fashion/popular?page=',
+               'http://www.kickstarter.com/discover/categories/fashion/most-funded?page=',
+               'http://www.kickstarter.com/discover/categories/fashion/successful?page=',
+
+               'http://www.kickstarter.com/discover/categories/film%20&%20video/recommended?page=',
+               'http://www.kickstarter.com/discover/categories/film%20&%20video/popular?page=',
+               'http://www.kickstarter.com/discover/categories/film%20&%20video/most-funded?page=',
+               'http://www.kickstarter.com/discover/categories/film%20&%20video/successful?page=',
+
+               'http://www.kickstarter.com/discover/categories/food/recommended?page=',
+               'http://www.kickstarter.com/discover/categories/food/popular?page=',
+               'http://www.kickstarter.com/discover/categories/food/most-funded?page=',
+               'http://www.kickstarter.com/discover/categories/food/successful?page=',
+
+               'http://www.kickstarter.com/discover/categories/games/recommended?page=',
+               'http://www.kickstarter.com/discover/categories/games/popular?page=',
+               'http://www.kickstarter.com/discover/categories/games/most-funded?page=',
+               'http://www.kickstarter.com/discover/categories/games/successful?page=',
+
+               'http://www.kickstarter.com/discover/categories/music/recommended?page=',
+               'http://www.kickstarter.com/discover/categories/music/popular?page=',
+               'http://www.kickstarter.com/discover/categories/music/most-funded?page=',
+               'http://www.kickstarter.com/discover/categories/music/successful?page=',
+
+               'http://www.kickstarter.com/discover/categories/photography/recommended?page=',
+               'http://www.kickstarter.com/discover/categories/photography/popular?page=',
+               'http://www.kickstarter.com/discover/categories/photography/most-funded?page=',
+               'http://www.kickstarter.com/discover/categories/photography/successful?page=',
+
+               'http://www.kickstarter.com/discover/categories/publishing/recommended?page=',
+               'http://www.kickstarter.com/discover/categories/publishing/popular?page=',
+               'http://www.kickstarter.com/discover/categories/publishing/most-funded?page=',
+               'http://www.kickstarter.com/discover/categories/publishing/successful?page=',
+
+               'http://www.kickstarter.com/discover/categories/technology/recommended?page=',
+               'http://www.kickstarter.com/discover/categories/technology/popular?page=',
+               'http://www.kickstarter.com/discover/categories/technology/most-funded?page=',
+               'http://www.kickstarter.com/discover/categories/technology/successful?page=',
+
+               'http://www.kickstarter.com/discover/categories/theater/recommended?page=',
+               'http://www.kickstarter.com/discover/categories/theater/popular?page=',
+               'http://www.kickstarter.com/discover/categories/theater/most-funded?page=',
+               'http://www.kickstarter.com/discover/categories/theater/successful?page=',
+                ]
+
+  all_links.each do |url|
+    project_links = []
+
+    get_project_urls(agent, url, project_links, 100) # run up to 100 pages
+    create_record(agent, project_links)
+  end
+end
+
+
+
+def get_project_urls(agent, mass_url, project_links, ending_page)
+  for i in 1..ending_page
     page = agent.get(mass_url + i.to_s)
     page.search(".project-thumbnail a").each do |project|
       project_links << project.attr("href")
     end
   end
+end
 
+def create_record(agent, project_links)
   project_url = "http://www.kickstarter.com"
 
   project_links.each do |url|
