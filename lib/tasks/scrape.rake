@@ -24,7 +24,7 @@ task :scrape => :environment do
     funding = project_page.search("meta[property='twitter:data1']").attr("content").text.gsub("$","").gsub(",","").to_i
     goal = project_page.search("meta[property='twitter:label1']").attr("content").text.gsub("PLEDGED OF $","").gsub(",","").to_i
 
-    days_left = project_page.search("meta[property='twitter:data2']").attr("content").to_i
+    days_left = project_page.search("meta[property='twitter:data2']").attr("content").value.to_i
     days_left == 0 ? expired = true : expired = false
 
     city_name = project_page.search("#project-metadata .location a").text.gsub("\n","")
