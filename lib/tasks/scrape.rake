@@ -1,6 +1,6 @@
 require 'mechanize'
 
-task :scrape_overall_recommended_links => :environment do
+task :scrape => :environment do
   desc "Scrape through Kickstarter Overall Recommended Page"
 
   agent = Mechanize.new
@@ -8,7 +8,7 @@ task :scrape_overall_recommended_links => :environment do
   project_links = []
 
   # Specify page range
-  for i in 1..3
+  for i in 1..2
     page = agent.get(mass_url + i.to_s)
     page.search(".project-thumbnail a").each do |project|
       project_links << project.attr("href")
@@ -20,7 +20,7 @@ task :scrape_overall_recommended_links => :environment do
   project_links.each do |url|
     project_page = agent.get(project_url + url)
     title = project_page.search("meta[property='og:title']").attr("content").text.to_s
-    backers = page.search("#backers_nav").children().children().attr("value").value.to_i
+    backers = page.search("#backers_nav .count").children.attr("value").value.to_i
     funding = page.search("meta[property='twitter:data1']").attr("content").text.gsub("$","").gsub(",","").to_i
     goal = page.search("meta[property='twitter:label1']").attr("content").text.gsub("PLEDGED OF $","").gsub(",","").to_i
     city_name = page.search("#project-metadata .location a").text.gsub("\n","")
