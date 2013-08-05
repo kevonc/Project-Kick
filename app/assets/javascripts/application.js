@@ -27,7 +27,7 @@ $("#projectscities").click(function(){
                 .data(data).enter();
             var projection = d3.geo.albersUsa()
                 .scale(1224)
-                .translate([475,280]);
+                .translate([485,280]);
 
             dataEnter.append("circle")
                 .attr("r", function(d, i)
