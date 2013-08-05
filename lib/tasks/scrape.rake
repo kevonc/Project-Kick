@@ -143,6 +143,8 @@ def create_record(agent, project_links)
     backers = project_page.search("#backers_nav .count data").attr("value").value.to_i
     funding = project_page.search("meta[property='twitter:data1']").attr("content").text.gsub("$","").gsub("£","").gsub(",","").to_i
     goal = project_page.search("meta[property='twitter:label1']").attr("content").text.gsub("PLEDGED OF $","").gsub("PLEDGED OF £","").gsub(",","").to_i
+    latitude = project_page.search("meta[property='kickstarter:location:latitude']").attr("content").value.to_f
+    longitude = project_page.search("meta[property='kickstarter:location:longitude']").attr("content").value.to_f
 
     days_left = project_page.search("meta[property='twitter:data2']").attr("content").value.to_i
     days_left == 0 ? expired = true : expired = false
@@ -151,6 +153,8 @@ def create_record(agent, project_links)
 
     city_name = project_page.search("#project-metadata .location a").text.gsub("\n","")
     city = City.find_or_create_by_name(city_name)
+    city.latitude = latitude
+    city.longitude = longitude
     city.total_projects += 1
     city.total_funding += funding
     city.save
