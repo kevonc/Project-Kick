@@ -8,7 +8,7 @@ task :scrape_recommended => :environment do
   mass_url = "http://www.kickstarter.com/discover/recommended?page="
   project_links = []
 
-  get_project_urls(agent, mass_url, project_links, 50) # max: 566
+  get_project_urls(agent, mass_url, project_links, 10) # max: 566
   create_record(agent, project_links)
 end
 
@@ -152,19 +152,26 @@ def create_record(agent, project_links)
     overfunded = ((funding.to_f / goal.to_f) * 100) - 100 if expired == true
 
     city_name = project_page.search("#project-metadata .location a").text.gsub("\n","")
-    city = City.find_or_create_by_name(city_name)
-    city.latitude = latitude
-    city.longitude = longitude
-    city.total_projects += 1
-    city.total_funding += funding
-    city.save
 
-    category_name = project_page.search("#project-metadata .category a").text.gsub("\n","")
-    category = Category.find_or_create_by_name(category_name)
-    category.total_projects += 1
-    category.total_funding += funding
-    category.save
+    # exclude countries other than US
+    if city_name.match /\s\w\w$/
+      city = City.find_or_create_by_name(city_name)
+      city.latitude = latitude
+      city.longitude = longitude
+      city.total_projects += 1
+      city.total_funding += funding
+      city.save
 
-    project = Project.create(title: title, backers: backers, funding: funding, goal: goal, overfunded: overfunded, expired: expired, city_id: city.id, category_id: category.id)
+      category_name = project_page.search("#project-metadata .category a").text.gsub("\n","")
+      category = Category.find_or_create_by_name(category_name)
+      category.total_projects += 1
+      category.total_funding += funding
+      category.save
+
+      puts "working! #{city_name}!"
+      project = Project.create(title: title, backers: backers, funding: funding, goal: goal, overfunded: overfunded, expired: expired, city_id: city.id, category_id: category.id)
+    else
+      puts" not working! #{city_name}!"
+    ending_page
   end
 end
