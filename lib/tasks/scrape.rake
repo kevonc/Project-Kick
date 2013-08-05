@@ -1,3 +1,4 @@
+#encoding: utf-8
 require 'mechanize'
 
 task :scrape_recommended => :environment do
@@ -140,7 +141,7 @@ def create_record(agent, project_links)
     project_page = agent.get(project_url + url)
     title = project_page.search("meta[property='og:title']").attr("content").text.to_s
     backers = project_page.search("#backers_nav .count data").attr("value").value.to_i
-    funding = project_page.search("meta[property='twitter:data1']").attr("content").text.gsub("$","").gsub(",","").to_i
+    funding = project_page.search("meta[property='twitter:data1']").attr("content").text.gsub("$","").gsub("£","").gsub(",","").to_i
     goal = project_page.search("meta[property='twitter:label1']").attr("content").text.gsub("PLEDGED OF $","").gsub(",","").to_i
 
     days_left = project_page.search("meta[property='twitter:data2']").attr("content").value.to_i
@@ -148,9 +149,15 @@ def create_record(agent, project_links)
 
     city_name = project_page.search("#project-metadata .location a").text.gsub("\n","")
     city = City.find_or_create_by_name(city_name)
+    city.total_projects += 1
+    city.total_funding += funding
+    city.save
 
     category_name = project_page.search("#project-metadata .category a").text.gsub("\n","")
     category = Category.find_or_create_by_name(category_name)
+    category.total_projects += 1
+    category.total_funding += funding
+    category.save
 
     project = Project.create(title: title, backers: backers, funding: funding, goal: goal, expired: expired, city_id: city.id, category_id: category.id)
   end
