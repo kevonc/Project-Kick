@@ -13,3 +13,25 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(function(){
+  $.ajax({
+    url: '/totalprojectsbycities',
+    type: 'GET',
+    dataType: 'JSON'
+  }).done(function(data){
+    var svg = d3.select("svg");
+    var projection = d3.geo.albersUsa().scale(1224).translate([475,280]);
+
+   for (i=0;i < data.length; i++){
+     var total_projects = data[i].total_projects;
+     var longitude = data[i].longitude;
+     var latitude = data[i].latitude;
+     svg.append("circle").attr("r",Math.log(total_projects)*8).attr("transform", function() {
+         return "translate(" + projection([longitude, latitude]) + ")";
+     });
+    }
+  });
+});
+
+$('#projectscities').click(function(){ }
