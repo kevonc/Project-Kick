@@ -1,33 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title>Kickstarter</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.js" type="text/javascript" charset="utf-8"></script>
-  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-
-  <style type="text/css" media="screen">
-      body, html {
-          padding: 0;
-          margin: 0;
-      }
-
-      #container {
-          width: 800px;
-          margin-left: auto;
-          margin-right: auto;
-      }
-
-  </style>
-</head>
-<body>
+<%= render 'layouts/header' %>
+<%= render 'layouts/nav' %>
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 <div id="container">
   <%= yield %>
-
 </div>
 <script type="text/javascript" charset="utf-8">
 </script>
-</body>
-</html>
+<%= render 'layouts/footer' %>
