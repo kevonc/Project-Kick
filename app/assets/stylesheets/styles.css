@@ -13,26 +13,26 @@ svg {
     width:1000px;
 }
 
-/*#citydata*/
-/*{*/
-    /*position: absolute;*/
-    /*width: 190px;*/
-    /*height: auto;*/
-    /*padding: 10px;*/
-    /*background-color: white;*/
-    /*-webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);*/
-    /*-moz-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);*/
-    /*box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);*/
-    /*pointer-events: none;*/
-/*}*/
+#citydata
+{
+    position: absolute;
+    width: 190px;
+    height: auto;
+    padding: 10px;
+    background-color: white;
+    -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+}
 
-/*#citydata.hidden*/
-/*{*/
-    /*display: none;*/
-    /*-moz-transition: all 0.15s;*/
-    /*-o-transition: all 0.15s;*/
-    /*-webkit-transition: all 0.15s;*/
-    /*transition: all 0.15s;*/
-/*}*/
+#citydata.hidden
+{
+    display: none;
+    -moz-transition: all 0.15s;
+    -o-transition: all 0.15s;
+    -webkit-transition: all 0.15s;
+    transition: all 0.15s;
+}
 
 #category {}
