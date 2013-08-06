@@ -6,6 +6,7 @@ Kickstarter::Application.routes.draw do
 
   get '/totalfundingbycities' => "cities#totalfunding"
 
+  get '/category' => 'categories#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
