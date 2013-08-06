@@ -73,20 +73,40 @@ function showfunding(){
                 .attr("r", function(d,i){
                     return Math.log(data[i].total_funding/50) })
                 .attr("fill", function(d,i){
-//                    if(Math.log(data[i].total_funding/50) < 4){
-//                        //debugger;
                         return "hsl(" + Math.log(data[i].total_funding)*30 + ",100%,50%)";
-                        //"#3366FF"
-//                    } else {
-//
-//                        return "#000000"
-//                    }
                 });
-//                .style("fill", function(d){
-//                    if      (d.region == "m") {return "#0a9078"}
-//                    else if (d.region == "w") {return "#0066ab"}
-//                    else if (d.region == "s") {return "#e5b022"}
-//                    else if (d.region == "e") {return "#ef4423"}
-//                    else {return "gray"}
         });
 }
+//hover events
+svg.selectAll("circle, text")
+    .on("mouseover", function(d) {
+        //Get this bar's x/y values, then augment for the tooltip
+        d3.select("#citydata")
+            .style("left", (d3.event.pageX) + 20 + "px")
+            .style("top", (d3.event.pageY) - 30 + "px")
+            .select("#value")
+            .text(d.school);
+//        d3.select('#seed-number')
+//            .text(d.seed);
+//        d3.select('#name')
+//            .text(d.school);
+//        d3.select('#expenses')
+//            .text("$" + addCommas(d.texpenses));
+//        d3.select('#revenue')
+//            .text("$" + addCommas(d.rev));
+//        d3.select('#appearance')
+//            .text(d.appearances);
+//        d3.select('#finalfours')
+//            .text(d.finalfours);
+//        d3.select('#titles')
+//            .text(d.titles);
+//        // for rounding values to million
+//        // .text("$" + parseInt(d.gross/1000000) + " million");
+//        d3.select("#tooltip").classed("hidden", false);
+    })
+
+    .on("mouseout", function() {
+
+        //Hide the tooltip
+        d3.select("#city").classed("hidden", true);
+    });
