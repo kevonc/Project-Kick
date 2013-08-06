@@ -8,6 +8,7 @@ gem 'rails', '3.2.13'
 gem 'pg'
 gem 'mechanize'
 gem 'devise'
+gem 'activerecord-postgres-hstore'
 
 
 # Gems used only for assets and not required
