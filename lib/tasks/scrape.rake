@@ -8,7 +8,7 @@ task :scrape_recommended => :environment do
   mass_url = "http://www.kickstarter.com/discover/recommended?page="
   project_links = []
 
-  get_project_urls(agent, mass_url, project_links, 5) # max: 566
+  get_project_urls(agent, mass_url, project_links, 150) # max: 566
   create_record(agent, project_links)
 end
 
@@ -169,21 +169,21 @@ def create_record(agent, project_links)
       category.total_funding += funding
 
       # Consider moving this to a function
-      categories = {"Art" => ["Conceptual Art", "Crafts", "Digital Art", "Illustration", "Painting", "Performance Art",
+      categories = {"Art" => ["Art", "Conceptual Art", "Crafts", "Digital Art", "Illustration", "Painting", "Performance Art",
                     "Mixed Media", "Public Art", "Sculpture"],
                     "Comics" => ["Comics"],
                     "Dance" => ["Dance"],
-                    "Design" => ["Graphic Design", "Product Design"],
+                    "Design" => ["Design", "Graphic Design", "Product Design"],
                     "Fashion" => ["Fashion"],
-                    "Film & Video" => ["Animation", "Documentary", "Narrative", "Film", "Short Film", "Webseries"],
+                    "Film & Video" => ["Film & Video", "Animation", "Documentary", "Narrative", "Film", "Narrative Film", "Short Film", "Webseries"],
                     "Food" => ["Food"],
-                    "Games" => ["Tabletop Games", "Video Games"],
-                    "Music" => ["Classical Music", "Country & Folk", "Electronic Music", "Hip-Hop", "Indie Rock", "Jazz",
+                    "Games" => ["Games", "Tabletop Games", "Video Games"],
+                    "Music" => ["Music", "Classical Music", "Country & Folk", "Electronic Music", "Hip-Hop", "Indie Rock", "Jazz",
                              "Pop", "Rock", "World Music"],
                     "Photography" => ["Photography"],
-                    "Publishing" => ["Art Book", "Children's Book", "Fiction", "Journalism", "Nonfiction", "Periodical",
+                    "Publishing" => ["Publishing", "Art Book", "Children's Book", "Fiction", "Journalism", "Nonfiction", "Periodical",
                                   "Poetry", "Radio & Podcast"],
-                    "Technology" => ["Hardware", "Open Software"],
+                    "Technology" => ["Technology", "Hardware", "Open Software"],
                     "Theater" => ["Theater"]}
 
       categories.each do |key, value|
