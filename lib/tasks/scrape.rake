@@ -8,7 +8,7 @@ task :scrape_recommended => :environment do
   mass_url = "http://www.kickstarter.com/discover/recommended?page="
   project_links = []
 
-  get_project_urls(agent, mass_url, project_links, 50) # max: 566
+  get_project_urls(agent, mass_url, project_links, 5) # max: 566
   create_record(agent, project_links)
 end
 
@@ -150,6 +150,7 @@ def create_record(agent, project_links)
     days_left == 0 ? expired = true : expired = false
 
     overfunded = ((funding.to_f / goal.to_f) * 100) - 100 if expired == true
+    main_category = ""
 
     city_name = project_page.search("#project-metadata .location a").text.gsub("\n","")
 
@@ -166,12 +167,38 @@ def create_record(agent, project_links)
       category = Category.find_or_create_by_name(category_name)
       category.total_projects += 1
       category.total_funding += funding
+
+      # Consider moving this to a function
+      categories = {"Art" => ["Conceptual Art", "Crafts", "Digital Art", "Illustration", "Painting", "Performance Art",
+                    "Mixed Media", "Public Art", "Sculpture"],
+                    "Comics" => ["Comics"],
+                    "Dance" => ["Dance"],
+                    "Design" => ["Graphic Design", "Product Design"],
+                    "Fashion" => ["Fashion"],
+                    "Film & Video" => ["Animation", "Documentary", "Narrative", "Film", "Short Film", "Webseries"],
+                    "Food" => ["Food"],
+                    "Games" => ["Tabletop Games", "Video Games"],
+                    "Music" => ["Classical Music", "Country & Folk", "Electronic Music", "Hip-Hop", "Indie Rock", "Jazz",
+                             "Pop", "Rock", "World Music"],
+                    "Photography" => ["Photography"],
+                    "Publishing" => ["Art Book", "Children's Book", "Fiction", "Journalism", "Nonfiction", "Periodical",
+                                  "Poetry", "Radio & Podcast"],
+                    "Technology" => ["Hardware", "Open Software"],
+                    "Theater" => ["Theater"]}
+
+      categories.each do |key, value|
+        if value.include? category_name
+          main_category = key
+        end
+      end
+
+      category.main_category = main_category
       category.save
 
       puts "Scraping #{city_name}"
       project = Project.create(title: title, backers: backers, funding: funding, goal: goal, overfunded: overfunded, expired: expired, city_id: city.id, category_id: category.id)
     else
-      puts "Outside US, discarding #{city_name}"
+      puts "----------Outside US, discarding #{city_name}"
     end
   end
 end
