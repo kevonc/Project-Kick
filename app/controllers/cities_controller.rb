@@ -16,4 +16,11 @@ class CitiesController < ApplicationController
       format.json {render :json => @cities }
     end
   end
+
+  def chart
+    @categories = Category.all
+    respond_to do |format|
+      format.json {render :json => @categories }
+    end
+  end
 end
