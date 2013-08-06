@@ -1,45 +1,39 @@
 $(function(){
-  var w = 800;
-  var h = 500;
-  var svg = d3.select("body")
-              .append("svg")
-              .attr("width", w)
-              .attr("height", h);
+  $.ajax({
+    url: '/totalprojectsbycategories',
+    type: 'GET',
+    dataType: 'JSON'
+  }).done(function(data){
+    var squareSize = 30;
+    var squaresInRow = 30;
+    var squaresInColumn = 8;
+    var gapSize = 2;
+    var boardBorder = 2;
+    var boardWidth = (squareSize * squaresInRow) + (gapSize * (squaresInRow - 1) + boardBorder * 2);
+    var boardHeight = (squareSize * squaresInColumn) + (gapSize * (squaresInColumn - 1) + boardBorder * 2);
 
-  var square = svg.append("rect")
-                  .attr("x", 10)
-                  .attr("y", 10)
-                  .attr("width", 30)
-                  .attr("height", 30)
-                  .attr("fill", "#4c9ec3");
+    var svg = d3.select("body").append("svg")
+      .attr("width", boardWidth)
+      .attr("height", boardHeight);
 
-  var square = svg.append("rect")
-                  .attr("x", 42)
-                  .attr("y", 10)
-                  .attr("width", 30)
-                  .attr("height", 30)
-                  .attr("fill", "#27709d");
+    var newSquares = svg.selectAll("rect")
+      .data(data)
+      .enter();
 
-  var square = svg.append("rect")
-                  .attr("x", 10)
-                  .attr("y", 42)
-                  .attr("width", 30)
-                  .attr("height", 30)
-                  .attr("fill", "#318a6c");
+    svg.append("rect")
+      .attr("x", 0).attr("y", 0)
+      .attr("rx", boardBorder) // radius
+      .attr("width", boardWidth).attr("height", boardHeight)
+      .attr("opacity", 0.3);
 
+    newSquares.append("rect")
+      .attr("id", function (d, i) { return "square_" + i; })
+      .attr("x", function (d, i) { return d.x; })
+      .attr("y", function (d, i) { return d.y; })
+      .attr("width", squareSize)
+      .attr("height", squareSize)
+      .attr("rx", boardBorder)
+      .attr("fill", function (d, i) { return d.color; });
+  });
 
 });
-
-// yellow - #d5b92a
-// orange - #e36f26
-// pink - #f16776
-// red1- #d33f35
-// red2 - #b02e30
-// maroon - #923442
-// purple - #86374d
-// dark purple - #5b4961
-// blue1 - #4c9ec3
-// blue2- #27709d
-// green1 - #318a6c
-// green2 -#72a94b
-// brown - #873625
