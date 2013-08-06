@@ -13,7 +13,7 @@ $(function(){
     var boardWidth = (squareSize * squaresInRow) + (gapSize * (squaresInRow - 1) + boardBorder * 2);
     var boardHeight = (squareSize * squaresInColumn) + (gapSize * (squaresInColumn - 1) + boardBorder * 2);
 
-    var svg_category_project = d3.select("body").append("svg")
+    var svg_category_project = d3.select("#category").append("svg")
       .attr("width", boardWidth)
       .attr("height", boardHeight);
 
