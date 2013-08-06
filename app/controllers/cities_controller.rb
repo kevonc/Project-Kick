@@ -9,4 +9,11 @@ class CitiesController < ApplicationController
       format.json {render :json => @cities }
     end
   end
+
+  def totalfunding
+    @cities = City.all
+    respond_to do |format|
+      format.json {render :json => @cities }
+    end
+  end
 end
