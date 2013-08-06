@@ -8,6 +8,8 @@ Kickstarter::Application.routes.draw do
 
   get '/category' => 'categories#index'
 
+  get '/cities/chart' => 'cities#chart'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

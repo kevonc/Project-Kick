@@ -1,24 +1,25 @@
-/**
- * Created with JetBrains RubyMine.
- * User: Alina Guzman
- * Date: 8/5/13
- * Time: 10:44 PM
- * To change this template use File | Settings | File Templates.
- */
-
 $(function(){
-    var svg = d3.select("svg");
 
-    d3.select("#projectscities")
-        .on("click", function(){
-            showprojects()
-        });
-
-    d3.select("#fundingcities")
-        .on("click", function(){
-            showfunding()
-        });
+//    $("#container").on("click", "#projectscities", function(){
+//            showprojects()
+//        });
+    d3.selectAll("button").on("click", function(){
+           if (d3.select(this).attr("id") === "projectscities"){
+               showprojects();
+           } else if (d3.select(this).attr("id") === "fundingcities"){
+               showfunding();
+           }
+    });
+//    $("#container").on("click", "#fundingcities", function(){
+//            showfunding()
+//        });
 });
+
+
+var svg = d3.select("svg");
+
+var dataEnter = [];
+var projection = [];
 
 function showfunding(){
     var svg = d3.select("svg");
@@ -29,24 +30,38 @@ function showfunding(){
         dataType: 'JSON'
     }).done(function(data){
             $("circle").hide();
-            var dataUpdate = svg.selectAll("circle")
-                .data(data);
-            var projection = d3.geo.albersUsa()
+            console.log("showfunding" + data.length);
+
+            //setting d3 selection for enter
+              dataEnter = svg.selectAll("circle")
+                 .data(data);
+
+            //setting scale and coordinates for svg USA map
+            projection = d3.geo.albersUsa()
                 .scale(1224)
                 .translate([485,280]);
 
-            dataUpdate.enter().append("circle")
+            //appending circles to the map
+            //this doesn't work after any button is clicked already
+            dataEnter.enter().append("circle")
+                .attr("r", 0)
                 .transition()
                 .duration(1000)
                 .attr("r", function(d,i){
+                    console.log("in d3 enter radius attr");
                     return Math.log(data[i].total_funding/50) })
                 .attr("transform", function(d, i) {
+                    console.log("in d3 enter coordinates attr");
                     return "translate(" + projection([data[i].longitude, data[i].latitude]) + ")"});
         });
 }
 
+
+
 function showprojects() {
+
     var svg = d3.select("svg");
+
 
     $.ajax({
         url: '/totalprojectsbycities',
@@ -54,17 +69,28 @@ function showprojects() {
         dataType: 'JSON'
     }).done(function(data){
             $("circle").hide();
-            var dataEnter = svg.selectAll("circle")
-                .data(data);
-            var projection = d3.geo.albersUsa()
+            console.log("showprojects" + data.length);
+
+            dataEnter = svg.selectAll("circle").data(data);
+
+            //setting scale and coordinates for svg USA map
+            projection = d3.geo.albersUsa()
                 .scale(1224)
                 .translate([485,280]);
 
+            console.log(dataEnter + "" + projection);
+
+
+            //appending circles to the map
+            //this doesn't work after any button is clicked already
             dataEnter.enter().append("circle")
+                .attr("r", 0)
+
                 .transition()
                 .duration(1000)
                 .attr("r", function(d, i)
-                { return Math.log(data[i].total_projects)*8 })
+                {   console.log("in d3 enter radius attr");
+                    return Math.log(data[i].total_projects)*8 })
                 .attr("transform", function(d, i) {
                     return "translate(" + projection([data[i].longitude, data[i].latitude]) + ")" });
 
