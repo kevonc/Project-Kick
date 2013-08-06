@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130806002940) do
+ActiveRecord::Schema.define(:version => 20130806203200) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(:version => 20130806002940) do
     t.integer  "total_funding",  :default => 0
     t.float    "latitude",       :default => 0.0
     t.float    "longitude",      :default => 0.0
+  end
+
+  create_table "d3_category_projects", :force => true do |t|
+    t.integer "x"
+    t.integer "y"
+    t.string  "color"
+    t.string  "subcat"
   end
 
   create_table "projects", :force => true do |t|
