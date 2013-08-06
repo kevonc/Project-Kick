@@ -12,19 +12,19 @@ $(function(){
     var boardWidth = (squareSize * squaresInRow) + (gapSize * (squaresInRow - 1) + boardBorder * 2);
     var boardHeight = (squareSize * squaresInColumn) + (gapSize * (squaresInColumn - 1) + boardBorder * 2);
 
-    var svg = d3.select("body").append("svg")
+    var svg_category_project = d3.select("body").append("svg")
       .attr("width", boardWidth)
       .attr("height", boardHeight);
 
-    var newSquares = svg.selectAll("rect")
+    var newSquares = svg_category_project.selectAll("rect")
       .data(data)
       .enter();
 
-    svg.append("rect")
+    svg_category_project.append("rect")
       .attr("x", 0).attr("y", 0)
       .attr("rx", boardBorder) // radius
       .attr("width", boardWidth).attr("height", boardHeight)
-      .attr("opacity", 0.3);
+      .attr("fill", "#ffffff");
 
     newSquares.append("rect")
       .attr("id", function (d, i) { return "square_" + i; })
@@ -35,5 +35,4 @@ $(function(){
       .attr("rx", boardBorder)
       .attr("fill", function (d, i) { return d.color; });
   });
-
 });
