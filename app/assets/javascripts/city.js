@@ -29,7 +29,7 @@ function showfunding(){
         type: 'GET',
         dataType: 'JSON'
     }).done(function(data){
-            $("circle").hide();
+            $("circle").remove();
             console.log("showfunding" + data.length);
 
             //setting d3 selection for enter
@@ -42,17 +42,16 @@ function showfunding(){
                 .translate([485,280]);
 
             //appending circles to the map
-            //this doesn't work after any button is clicked already
             dataEnter.enter().append("circle")
                 .attr("r", 0)
+                .attr("transform", function(d, i) {
+                    return "translate(" + projection([data[i].longitude, data[i].latitude]) + ")" })
                 .transition()
                 .duration(1000)
                 .attr("r", function(d,i){
                     console.log("in d3 enter radius attr");
-                    return Math.log(data[i].total_funding/50) })
-                .attr("transform", function(d, i) {
-                    console.log("in d3 enter coordinates attr");
-                    return "translate(" + projection([data[i].longitude, data[i].latitude]) + ")"});
+                    return Math.log(data[i].total_funding/50) });
+
         });
 }
 
@@ -68,7 +67,7 @@ function showprojects() {
         type: 'GET',
         dataType: 'JSON'
     }).done(function(data){
-            $("circle").hide();
+            $("circle").remove();
             console.log("showprojects" + data.length);
 
             dataEnter = svg.selectAll("circle").data(data);
@@ -85,14 +84,14 @@ function showprojects() {
             //this doesn't work after any button is clicked already
             dataEnter.enter().append("circle")
                 .attr("r", 0)
-
+                .attr("transform", function(d, i) {
+                    return "translate(" + projection([data[i].longitude, data[i].latitude]) + ")" })
                 .transition()
                 .duration(1000)
                 .attr("r", function(d, i)
                 {   console.log("in d3 enter radius attr");
-                    return Math.log(data[i].total_projects)*8 })
-                .attr("transform", function(d, i) {
-                    return "translate(" + projection([data[i].longitude, data[i].latitude]) + ")" });
+                    return Math.log(data[i].total_projects)*8 });
+
 
         });
 }
