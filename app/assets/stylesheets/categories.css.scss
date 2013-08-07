@@ -13,3 +13,15 @@
   font-family: 'Rokkitt', serif;
   font-size: 2em;
 }
+
+#sub-cat {
+  hidden: true;
+}
+
+#sub-cat.hidden {
+    display: none;
+    -moz-transition: all 0.15s;
+    -o-transition: all 0.15s;
+    -webkit-transition: all 0.15s;
+    transition: all 0.15s;
+}
