@@ -7,8 +7,11 @@
   padding: 0 2px;
 }
 
-#cat-title {
-  width: 100%;
+#cat-info {
+  width: 50%;
+  height: 300px;
+  float: left;
+  background-color: #E0E0F8;
   text-align: center;
   font-family: 'Rokkitt', serif;
   font-size: 2em;
@@ -16,6 +19,10 @@
 
 #sub-cat {
   hidden: true;
+  width: 50%;
+  height: 300px;
+  float: right;
+  display: inline;
 }
 
 #sub-cat.hidden {
@@ -24,4 +31,9 @@
     -o-transition: all 0.15s;
     -webkit-transition: all 0.15s;
     transition: all 0.15s;
+}
+
+.arc path {
+  stroke: #fff;
+  stroke-width: 2px;
 }
