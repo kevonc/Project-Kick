@@ -13,7 +13,31 @@ svg {
     width:1000px;
 }
 
-#citydata
+.citydata  {
+    float: right;
+    width: 190px;
+    z-index: 1000;
+    height: auto;
+    padding: 10px;
+    background-color: #000000;
+    -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+}
+
+.citydata.hidden
+{
+    display: none;
+    -moz-transition: all 0.15s;
+    -o-transition: all 0.15s;
+    -webkit-transition: all 0.15s;
+    transition: all 0.15s;
+}
+
+#category {}
+
+#tooltip
 {
     position: absolute;
     width: 190px;
@@ -26,7 +50,7 @@ svg {
     pointer-events: none;
 }
 
-#citydata.hidden
+#tooltip.hidden
 {
     display: none;
     -moz-transition: all 0.15s;
@@ -34,5 +58,3 @@ svg {
     -webkit-transition: all 0.15s;
     transition: all 0.15s;
 }
-
-#category {}
