@@ -16,9 +16,9 @@ $(function(){
       .attr("width", boardWidth)
       .attr("height", boardHeight);
 
-    var svg_category_project_breakdown = d3.select("#sub-cat").append("svg")
-      .attr("width", boardWidth - (boardBorder * 2))
-      .attr("height", 200);
+    // var svg_category_project_breakdown = d3.select("#sub-cat").append("svg")
+    //   .attr("width", boardWidth - (boardBorder * 2))
+    //   .attr("height", 200);
 
     var newSquares = svg_category_project.selectAll("rect")
       .data(data)
@@ -48,34 +48,110 @@ $(function(){
         .duration(500)
         .attr("stroke-width", 1)
         .attr("stroke", "#000000");
-        d3.select("#cat-title").text(d.cat_name);
-        d3.select("#sub-cat").insert(subCatBreakdown(d, i));
+        d3.select("#cat-info").text(d.cat_name);
+        d3.select("#sub-cat").insert(subCatBreakdown(d.sub_cat));
       })
       .on("mouseout", function(d, i) {
+        d3.select("#sub-cat").select("svg").remove();
+        $("g").remove();
         d3.select(this)
           .attr("fill", function (d, i) { return d.color; })
           .transition()
           .duration(50)
           .attr("stroke-width", 0);
-        d3.select("#sub-cat").classed("hidden", true);
+        // d3.select("#sub-cat").classed("hidden", true);
       });
 
-    function subCatBreakdown(d, i) {
-      var svg_category_project_breakdown = d3.select("#sub-cat")
-        .classed("hidden", false);
+    function subCatBreakdown(data) {
+      var array = [];
+
+      for (var k in data) {
+      var singleArray = [];
+        singleArray.push(k);
+        singleArray.push(data[k]);
+        array.push(singleArray);
+      }
+
+      d3.select("#sub-cat").classed("hidden", false);
+
+      ///////////////////////////////////////////////////////
+
+      var pieWidth = 500,
+          pieHeight = 300,
+          radius = Math.min(pieWidth, pieHeight) / 2;
+
+      var color = d3.scale.ordinal()
+        .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+      var arc = d3.svg.arc()
+        .outerRadius(radius - 10)
+        .innerRadius(0);
+
+      var pie = d3.layout.pie()
+        .sort(null)
+        .value(function(array) { return array[1]; });
+
+      var svg = d3.select("#sub-cat").append("svg")
+        .attr("width", pieWidth)
+        .attr("height", pieHeight)
+        .append("g")
+        .attr("transform", "translate(" + pieWidth / 2 + "," + pieHeight / 2 + ")");
+
+      var g = svg.selectAll(".arc")
+        .data(pie(array))
+        .enter().append("g")
+        .attr("class", "arc");
+
+      g.append("path")
+        .attr("d", arc)
+        .style("fill", "#848484");
+
+      g.append("text")
+        .attr("transform", function(array) { return "translate(" + arc.centroid(array) + ")"; })
+        .attr("dy", ".71em")
+        .style("text-anchor", "middle")
+        .text(function(d, i) { return array[i][0]; });
 
 
-      var newCircles = svg_category_project_breakdown.selectAll("circle")
-      .data([1,2,3])
-      .enter();
 
-      console.log(newCircles);
 
-      newCircles.append("circle")
-        .attr("cx", 50)
-        .attr("cy", 50)
-        .attr("r", 40)
-        .attr("fill", "#F781D8");
-    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      /////////////////////////////////////////////////////////
+
+      // var newCircles = svg_category_project_breakdown.selectAll("circle")
+      //   .data(array)
+      //   .enter();
+
+      // newCircles.append("circle")
+      //   .attr("cx", function(d, i) { return d[1] * 20 ; })
+      //   .attr("cy", 120)
+      //   .attr("r", function(d, i) { return Math.log(d[1]) * 10 ; })
+      //   .attr("fill", "#2E64FE");
+
+      debugger;
+      // var newText = svg_category_project_breakdown.selectAll("text")
+      //   .data(array)
+      //   .enter()
+      //   .append("text")
+      //   .attr("x", 50)
+      //   .attr("y", 80)
+      //   .attr("text-anchor", "middle")
+      //   .text("hello");
+    }
   });
 });
