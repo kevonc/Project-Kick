@@ -20,6 +20,7 @@ svg {
 
 nav {
   font-family: 'Armata', sans-serif;
+  margin-bottom: 50px;
   h3 {
     margin: 0;
   }
@@ -38,16 +39,14 @@ nav {
   }
 }
 
-#category {
-
-}
+#category {}
 
 #tooltip {
     position: absolute;
     width: 190px;
     height: auto;
     padding: 10px;
-    background-color: white;
+    background-color: #f9f9f9;
     -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
     -moz-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
@@ -62,23 +61,19 @@ nav {
     transition: all 0.15s;
 }
 
-.citydata  {
-    float: right;
-    width: 190px;
-    z-index: 1000;
-    height: auto;
-    padding: 10px;
-    background-color: #000000;
-    -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
-    -moz-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
-    pointer-events: none;
+#city-name {
+  font-family: 'Armata', sans-serif;
 }
 
-.citydata.hidden {
-    display: none;
-    -moz-transition: all 0.15s;
-    -o-transition: all 0.15s;
-    -webkit-transition: all 0.15s;
-    transition: all 0.15s;
+button {
+  margin-top: 15px;
+  font-family: 'Armata', sans-serif;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+button:hover {
+  background-color: #333333;
+  color: #ffffff;
+  border-radius: 10px;
 }

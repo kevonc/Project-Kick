@@ -1,5 +1,7 @@
 $(function(){
 
+    showprojects();
+
     d3.selectAll("button").on("click", function(){
            if (d3.select(this).attr("id") === "projectscities"){
                showprojects();
@@ -7,7 +9,6 @@ $(function(){
                showfunding();
            }
     });
-
 });
 
 var dataEnter = [];
