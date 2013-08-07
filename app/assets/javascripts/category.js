@@ -48,7 +48,7 @@ $(function(){
         .duration(500)
         .attr("stroke-width", 1)
         .attr("stroke", "#000000");
-        d3.select("#cat-info").text(d.cat_name);
+        d3.select("#cat-title").text(d.cat_name);
         d3.select("#sub-cat").insert(subCatBreakdown(d.sub_cat));
       })
       .on("mouseout", function(d, i) {
@@ -104,12 +104,14 @@ $(function(){
 
       g.append("path")
         .attr("d", arc)
-        .style("fill", "#848484");
+        .style("fill", "#216e94");
 
       g.append("text")
         .attr("transform", function(array) { return "translate(" + arc.centroid(array) + ")"; })
         .attr("dy", ".71em")
         .style("text-anchor", "middle")
+        .attr("fill", "#ffffff")
+        .attr("font-family", "Armata")
         .text(function(d, i) { return array[i][0]; });
 
 
@@ -143,7 +145,7 @@ $(function(){
       //   .attr("r", function(d, i) { return Math.log(d[1]) * 10 ; })
       //   .attr("fill", "#2E64FE");
 
-      debugger;
+      // debugger;
       // var newText = svg_category_project_breakdown.selectAll("text")
       //   .data(array)
       //   .enter()
