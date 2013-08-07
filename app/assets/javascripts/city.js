@@ -32,7 +32,7 @@ function showprojects() {
 
             //appending circles to the map
             dataEnter.enter().append("circle")
-                .on("mouseover", function(){
+                .on("mouseover", function(d,i){
                     d3.select("#tooltip")
                         .style("left", (d3.event.pageX) + 20 + "px")
                         .style("top", (d3.event.pageY) - 30 + "px");
