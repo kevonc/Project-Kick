@@ -47,55 +47,55 @@ task :populate_category_projects => :environment do
 
   case run
     when 0..(art - 1)
-      cat_name = "arts"
+      cat_name = "Arts"
       color = "#d5b92a"
       sub_cat = find_sub_categories("Art")
     when art..(comics - 1)
-      cat_name = "comics"
+      cat_name = "Comics"
       color = "#e36f26"
       sub_cat = find_sub_categories("Comics")
     when comics..(dance - 1)
-      cat_name = "dance"
+      cat_name = "Dance"
       color = "#f16776"
       sub_cat = find_sub_categories("Dance")
     when dance..(design - 1)
-      cat_name = "design"
+      cat_name = "Design"
       color = "#d33f35"
       sub_cat = find_sub_categories("Design")
     when design..(fashion - 1)
-      cat_name = "fashion"
+      cat_name = "Fashion"
       color = "#b02e30"
       sub_cat = find_sub_categories("Fashion")
     when fashion..(filmnvideo - 1)
-      cat_name = "filmnvideo"
+      cat_name = "Film & Video"
       color = "#923442"
       sub_cat = find_sub_categories("Film & Video")
     when filmnvideo..(food - 1)
-      cat_name = "food"
+      cat_name = "Food"
       color = "#86374d"
       sub_cat = find_sub_categories("Food")
     when food..(games - 1)
-      cat_name = "games"
+      cat_name = "Games"
       color = "#5b4961"
       sub_cat = find_sub_categories("Games")
     when games..(music - 1)
-      cat_name = "music"
+      cat_name = "Music"
       color = "#4c9ec3"
       sub_cat = find_sub_categories("Music")
     when music..(photography - 1)
-      cat_name = "photography"
+      cat_name = "Photography"
       color = "#27709d"
       sub_cat = find_sub_categories("Photography")
     when photography..(publishing - 1)
-      cat_name = "publishing"
+      cat_name = "Publishing"
       color = "#318a6c"
       sub_cat = find_sub_categories("Publishing")
     when publishing..(theater - 1)
-      cat_name = "theater"
+      cat_name = "Theater"
       color = "#72a94b"
       sub_cat = find_sub_categories("Theater")
     when theater..(technology - 1)
-      cat_name = "technology"
+      cat_name = "Technology"
       color = "#873625"
       sub_cat = find_sub_categories("Technology")
     else

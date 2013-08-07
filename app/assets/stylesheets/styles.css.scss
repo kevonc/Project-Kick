@@ -1,4 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Armata);
+@import url(http://fonts.googleapis.com/css?family=Rokkitt:400,700);
+
 
 html, body {
   margin: 0;
@@ -6,6 +8,7 @@ html, body {
 }
 
 svg {
+  background-color: #F2F2F2;
 }
 
 #topbar {
@@ -37,43 +40,4 @@ nav {
       font-size: 0.8em;
     }
   }
-}
-
-#category {}
-
-#citydata {
-    position: absolute;
-    width: 190px;
-    height: auto;
-    padding: 10px;
-    background-color: #f9f9f9;
-    -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
-    -moz-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
-    pointer-events: none;
-}
-
-#citydata.hidden {
-    display: none;
-    -moz-transition: all 0.15s;
-    -o-transition: all 0.15s;
-    -webkit-transition: all 0.15s;
-    transition: all 0.15s;
-}
-
-#city-name {
-  font-family: 'Armata', sans-serif;
-}
-
-button {
-  margin-top: 15px;
-  font-family: 'Armata', sans-serif;
-  padding: 8px;
-  border-radius: 10px;
-}
-
-button:hover {
-  background-color: #333333;
-  color: #ffffff;
-  border-radius: 10px;
 }
