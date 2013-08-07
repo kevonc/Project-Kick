@@ -41,7 +41,7 @@ nav {
 
 #category {}
 
-#tooltip {
+#citydata {
     position: absolute;
     width: 190px;
     height: auto;
@@ -53,7 +53,7 @@ nav {
     pointer-events: none;
 }
 
-#tooltip.hidden {
+#citydata.hidden {
     display: none;
     -moz-transition: all 0.15s;
     -o-transition: all 0.15s;
