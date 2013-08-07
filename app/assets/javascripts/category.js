@@ -1,4 +1,3 @@
-
 $(function(){
   $.ajax({
     url: '/totalprojectsbycategories',
@@ -22,10 +21,10 @@ $(function(){
       .enter();
 
     svg_category_project.append("rect")
-      .attr("x", 0).attr("y", 0)
+      .attr("x", 300).attr("y", 150)
       .attr("rx", boardBorder) // radius
       .attr("width", boardWidth).attr("height", boardHeight)
-      .attr("fill", "#ffffff");
+      .attr("fill", "#fff");
 
     newSquares.append("rect")
       .attr("id", function (d, i) { return "square_" + i; })
@@ -37,4 +36,3 @@ $(function(){
       .attr("fill", function (d, i) { return d.color; });
   });
 });
-

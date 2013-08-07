@@ -1,0 +1,65 @@
+@import url(http://fonts.googleapis.com/css?family=Armata);
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+svg {
+}
+
+#topbar {
+  height: 8px;
+  background-color: #65bfb8;
+}
+
+#container {
+  width: 960px;
+  margin: 0 auto;
+}
+
+nav {
+  font-family: 'Armata', sans-serif;
+  h3 {
+    margin: 0;
+  }
+  h5 {
+    margin: 0;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      float: left;
+      padding-right: 20px;
+      font-size: 0.8em;
+    }
+  }
+}
+
+#category {
+
+}
+
+/*#citydata*/
+/*{*/
+    /*position: absolute;*/
+    /*width: 190px;*/
+    /*height: auto;*/
+    /*padding: 10px;*/
+    /*background-color: white;*/
+    /*-webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);*/
+    /*-moz-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);*/
+    /*box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);*/
+    /*pointer-events: none;*/
+/*}*/
+
+/*#citydata.hidden*/
+/*{*/
+    /*display: none;*/
+    /*-moz-transition: all 0.15s;*/
+    /*-o-transition: all 0.15s;*/
+    /*-webkit-transition: all 0.15s;*/
+    /*transition: all 0.15s;*/
+/*}*/

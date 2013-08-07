@@ -6,7 +6,7 @@ Kickstarter::Application.routes.draw do
 
   get '/totalfundingbycities' => "cities#totalfunding"
 
-  get '/category' => 'categories#index'
+  get '/category' => 'categories#index', as: "category"
   get '/totalprojectsbycategories' => 'categories#totalprojects'
 
   get '/cities/chart' => 'cities#chart'
