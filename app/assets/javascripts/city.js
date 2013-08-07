@@ -36,14 +36,11 @@ function showprojects() {
                     d3.select("#tooltip")
                         .style("left", (d3.event.pageX) + 20 + "px")
                         .style("top", (d3.event.pageY) - 30 + "px");
-                        //.select("#value")
-                        //.text(d.school);
-                    d3.select("#city-name").text(data[i].name);
+                    d3.select("#city-name").text(data[i].name + '\n' + data[i].total_projects + " Projects");
                     d3.select("#tooltip").classed("hidden", false);
-
                 })
-                .on("mouseout", function(){
-                    //d3.select(this).remove("svg:title");
+                .on("mouseout", function() {
+                    d3.select("#tooltip").classed("hidden", true);
                 })
                 .attr("r", 0)
                 .attr("transform", function(d, i) {
@@ -79,8 +76,16 @@ function showfunding(){
 
             //appending circles to the map
             dataEnter.enter().append("circle")
-                .on("mouseover", function(d,i){alert(data[i].name)})
-                .attr("r", 0)
+                .on("mouseover", function(d,i){
+                    d3.select("#tooltip")
+                        .style("left", (d3.event.pageX) + 20 + "px")
+                        .style("top", (d3.event.pageY) - 30 + "px");
+                    d3.select("#city-name").text(data[i].name + '\n $' + data[i].total_funding + " Funded");
+                    d3.select("#tooltip").classed("hidden", false);
+                })
+                .on("mouseout", function() {
+                    d3.select("#tooltip").classed("hidden", true);
+                })                .attr("r", 0)
                 .attr("transform", function(d, i) {
                     return "translate(" + projection([data[i].longitude, data[i].latitude]) + ")" })
                 .transition()
