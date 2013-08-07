@@ -1,10 +1,10 @@
 <%= render 'layouts/header' %>
-<%= render 'layouts/nav' %>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+
 <div id="container">
+  <%= render 'layouts/nav' %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
   <%= yield %>
 </div>
-<script type="text/javascript" charset="utf-8">
-</script>
+
 <%= render 'layouts/footer' %>
