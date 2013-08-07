@@ -7,6 +7,8 @@ $(function(){
                showfunding();
            }
     });
+
+    //d3.selectAll("circle").onmouseover
 });
 
 var dataEnter = [];
@@ -14,6 +16,10 @@ var projection = [];
 
 function showprojects() {
     var svg = d3.select("svg");
+    var tooltip = d3.select(this)
+        .append("#citydata")
+        .style("visibility", "hidden")
+        .text("a simple tooltip");
 
     $.ajax({
         url: '/totalprojectsbycities',
@@ -30,6 +36,9 @@ function showprojects() {
 
             //appending circles to the map
             dataEnter.enter().append("circle")
+                .on("mouseover", function(d,i){
+                    return tooltip.style("visibility", "visible");
+                })
                 .attr("r", 0)
                 .attr("transform", function(d, i) {
                     return "translate(" + projection([data[i].longitude, data[i].latitude]) + ")" })
@@ -64,6 +73,7 @@ function showfunding(){
 
             //appending circles to the map
             dataEnter.enter().append("circle")
+                .on("mouseover", function(d,i){alert(data[i].name)})
                 .attr("r", 0)
                 .attr("transform", function(d, i) {
                     return "translate(" + projection([data[i].longitude, data[i].latitude]) + ")" })
@@ -75,4 +85,32 @@ function showfunding(){
                         return "hsl(" + Math.log(data[i].total_funding/50)*20 + ",100%,50%)";
                 });
         });
+}
+
+function cityhover() {
+
+        //Get this bar's x/y values, then augment for the tooltip
+        d3.select("#citydata")
+            .style("left", (d3.event.pageX) + 20 + "px")
+            .style("top", (d3.event.pageY) - 30 + "px")
+//            .select("#value")
+//            .text(d.school);
+//        d3.select('#seed-number')
+//            .text(d.seed);
+//        d3.select('#name')
+//            .text(d.school);
+//        d3.select('#expenses')
+//            .text("$" + addCommas(d.texpenses));
+//        d3.select('#revenue')
+//            .text("$" + addCommas(d.rev));
+//        d3.select('#appearance')
+//            .text(d.appearances);
+//        d3.select('#finalfours')
+//            .text(d.finalfours);
+//        d3.select('#titles')
+            .text(d.titles);
+        // for rounding values to million
+        // .text("$" + parseInt(d.gross/1000000) + " million");
+        d3.select("#citydata").classed("hidden", false);
+
 }
