@@ -5,7 +5,7 @@
   stroke-opacity:1;
 }
 
-#tooltip {
+#citydata {
     position: absolute;
     width: 190px;
     height: auto;
@@ -17,7 +17,7 @@
     pointer-events: none;
 }
 
-#tooltip.hidden {
+#citydata.hidden {
     display: none;
     -moz-transition: all 0.15s;
     -o-transition: all 0.15s;

@@ -1,10 +1,18 @@
 <nav>
   <h3>Project Name Goes Here</h3>
+  <span class="devise">
+    <%= render 'devise/menu/login_items' %>
+    <%= render 'devise/menu/registration_items' %>
+  </span>
   <h5>A message goes here describing our project in one sentence</h5>
+
   <ul>
     <li><%= link_to "Home", root_path %></li>
     <li>By City</li>
     <li><%= link_to "By Category", category_path %></li>
     <li>Exceeding Expectation</li>
   </ul>
+
+
 </nav>
+
