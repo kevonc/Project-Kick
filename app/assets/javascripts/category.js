@@ -33,6 +33,23 @@ $(function(){
       .attr("width", squareSize)
       .attr("height", squareSize)
       .attr("rx", boardBorder)
-      .attr("fill", function (d, i) { return d.color; });
+      .attr("fill", function (d, i) { return d.color; })
+      .on("mouseover", function(d, i) {
+        d3.select(this).attr("stroke-width", 1);
+        d3.select(this).attr("stroke", "#000000");
+        d3.select("#cat-title").text(d.cat_name);
+        d3.select("#sub-cat").append(subCatBreakdown(d, i));
+      })
+      .on("mouseout", function(d, i) {
+        d3.select(this).attr("stroke-width", 0);
+      });
+
+    function subCatBreakdown(d, i) {
+      d3.select(this).text("wthahaf");
+      $.each(d.sub_cat, function(key, value) {
+        console.log(key);
+        console.log(value);
+      });
+    };
   });
 });
