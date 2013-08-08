@@ -10,6 +10,8 @@ Kickstarter::Application.routes.draw do
   get '/totalprojectsbycategories' => 'categories#totalprojects'
   get '/totalfundingbycategories' => 'categories#totalfunding'
 
+  get '/tweets' => 'tweets#showtweets', as: "tweets"
+
   get '/cities/chart' => 'cities#chart'
 
   # The priority is based upon order of creation:

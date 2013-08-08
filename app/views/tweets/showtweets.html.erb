@@ -1,0 +1,10 @@
+<% @aggregated_tweets[0..19].each_with_index do |tweet, i| %>
+  <div class="span" id="tweet_<%= i + 1 %>" >
+    <%= tweet.text %><br>
+    @<%= tweet.user.name %><br>
+    <%= tweet.created_at.strftime("Posted on %m/%d/%Y, at %I:%M%p") %><br>
+  </div>
+<% end %>
+
+
+
