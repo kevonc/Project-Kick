@@ -4,6 +4,7 @@ Kickstarter::Application.routes.draw do
   root :to => 'cities#index'
   get '/totalprojectsbycities' => "cities#totalprojects"
   get '/totalfundingbycities' => "cities#totalfunding"
+  get '/funding' => 'categories#funding', as: "funding"
 
   get '/category' => 'categories#index', as: "category"
   get '/totalprojectsbycategories' => 'categories#totalprojects'
