@@ -1,3 +1,6 @@
+@import url(http://fonts.googleapis.com/css?family=Passion+One:400,700);
+
+
 #category {
   height: 260px;
 }
@@ -11,10 +14,24 @@
   width: 50%;
   height: 300px;
   float: left;
-  background-color: #E0E0F8;
-  text-align: center;
-  font-family: 'Rokkitt', serif;
-  font-size: 2em;
+  h1, h2 {
+    font-size: 3.2em;
+    font-family: 'Passion One', cursive;
+    font-weight: 700;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+  }
+  h1 {
+    color: #14b2d1;
+  }
+  h2 {
+    color: #0f4a57;
+  }
+}
+
+#cat-title{
 }
 
 #sub-cat {
