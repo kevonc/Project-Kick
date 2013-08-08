@@ -1,5 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Passion+One:400,700);
-
+@import url(http://fonts.googleapis.com/css?family=Wire+One);
+@import url(http://fonts.googleapis.com/css?family=Tulpen+One);
 
 #category {
   height: 260px;
@@ -14,20 +15,21 @@
   width: 50%;
   height: 300px;
   float: left;
+  padding-top: 14px;
   h1, h2 {
     font-size: 3.2em;
     font-family: 'Passion One', cursive;
     font-weight: 700;
     letter-spacing: 8px;
     text-transform: uppercase;
-    margin: 0;
+    margin: -16px 0 0 0;
     padding: 0;
   }
   h1 {
-    color: #14b2d1;
+    color: #76cc1e;
   }
   h2 {
-    color: #0f4a57;
+    color: #386a6e;
   }
 }
 

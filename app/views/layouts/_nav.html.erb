@@ -1,14 +1,16 @@
 <nav>
-  <h3>Project Name Goes Here</h3>
-  <h5>A message goes here describing our project in one sentence</h5>
-
+  <div class="site">
+    <h3><%= link_to "ProjectKick", root_path %></h3>
+    <h5>Data Visualization for Kickstarter Projects</h5>
+  </div>
   <ul>
+    <li><%= link_to "About", "" %></li>
     <li><%= link_to "By City", root_path %></li>
     <li><%= link_to "By Category", category_path %></li>
-    <li><%= link_to "Exceeding Expectation", funding_path %></li>
+    <li><%= link_to "Marvel", funding_path %></li>
     <li><%= link_to "TweetKick", tweets_path %></li>
   </ul>
-
+  <div class="clear"></div>
 
 </nav>
 

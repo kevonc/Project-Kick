@@ -115,18 +115,19 @@ function displayData(dataset){
 
       g.append("path")
         .attr("d", arc)
-        .style("fill", "#216e94");
+        .style("fill", "#386a6e");
 
       var pos = d3.svg.arc().innerRadius(radius + 50).outerRadius(radius + 30);
       g.append("text")
         .attr("transform", function(array) { return "translate(" + pos.centroid(array) + ")"; })
         .attr("dy", 5)
         .attr("text-anchor", "middle")
-        .attr("fill", "#000000")
+        .attr("fill", "#424242")
        // .attr("fill", function(d, i) { return colorL(i); }) //Colorarray Labels
        // .attr("display", function(d) { return d.value >= 2 ? null : "none"; })
        .text(function(d, i) { return array[i][0]; })
-        .attr("font-family", "Armata");
+        .attr("font-family", "Tulpen One")
+        .attr("font-size", "22px");
         // .text(function(d, i) { return array[i][0]; });
     }
   });
