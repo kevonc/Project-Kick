@@ -47,8 +47,8 @@ function displayData(dataset){
         .attr("fill", "#fff")
         .transition()
         .duration(500)
-        .attr("stroke-width", 1)
-        .attr("stroke", "#000000");
+        .attr("stroke-width", 0)
+        .attr("stroke", "#fff");
         d3.select("#cat-title").text(d.cat_name);
         d3.select("#sub-cat").insert(subCatBreakdown(d.sub_cat));
       })

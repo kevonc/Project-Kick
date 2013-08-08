@@ -14,12 +14,6 @@ a {
 svg {
 }
 
-#topbar {
-  height: 16px;
-  background-color: #954eb7;
-  margin-bottom: 10px;
-}
-
 #container {
   width: 960px;
   margin: 0 auto;
@@ -30,6 +24,7 @@ svg {
 }
 
 nav {
+  margin: 10px 0;
   h3 {
     text-transform: uppercase;
     font-size: 2em;
@@ -56,6 +51,12 @@ nav {
       font-size: 0.9em;
     }
   }
+}
+
+.nav-bar {
+  height: 1px;
+  background-color: #F2F2F2;
+  margin-top: 10px;
 }
 
 .button_field {
