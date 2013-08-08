@@ -43,6 +43,7 @@ function displayData(dataset){
       .attr("fill", function(d, i) { return d.color; })
       .attr("opacity", 0.5)
       .on("mouseover", function(d, i) {
+        d3.select("#sub-cat").select("svg").remove();
         d3.select(this)
         .attr("fill", "#fff")
         .transition()
@@ -53,8 +54,6 @@ function displayData(dataset){
         d3.select("#sub-cat").insert(subCatBreakdown(d.sub_cat));
       })
       .on("mouseout", function(d, i) {
-        d3.select("#sub-cat").select("svg").remove();
-        $("g").remove();
         d3.select(this)
           .attr("fill", function (d, i) { return d.color; })
           .transition()
@@ -116,7 +115,8 @@ function displayData(dataset){
         .attr("d", arc)
         .style("fill", "#386a6e");
 
-      var pos = d3.svg.arc().innerRadius(radius + 50).outerRadius(radius + 30);
+      var pos = d3.svg.arc().innerRadius(radius + 30).outerRadius(radius + 30);
+
       g.append("text")
         .attr("transform", function(array) { return "translate(" + pos.centroid(array) + ")"; })
         .attr("dy", 5)
@@ -128,6 +128,9 @@ function displayData(dataset){
         .attr("font-family", "Tulpen One")
         .attr("font-size", "22px");
         // .text(function(d, i) { return array[i][0]; });
+
+      d3.select("g").transition()
+        .attr("fill", "#ffffff");
     }
   });
 };
