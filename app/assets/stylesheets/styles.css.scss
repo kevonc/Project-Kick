@@ -20,7 +20,7 @@ svg {
 
 nav {
   font-family: 'Armata', sans-serif;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   h3 {
     margin: 0;
   }
@@ -37,4 +37,17 @@ nav {
       font-size: 0.8em;
     }
   }
+}
+
+button {
+  font-family: 'Armata', sans-serif;
+  padding: 8px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+button:hover {
+  background-color: #333333;
+  color: #ffffff;
+  border-radius: 10px;
 }
