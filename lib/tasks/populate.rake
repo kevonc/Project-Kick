@@ -222,7 +222,7 @@ task :populate_category_funding => :environment do
       color = "#ffffff"
   end
 
-    populate = D3CategoryFunding.create(x: x, y: y, color: color, cat_name: cat_name, sub_cat: sub_cat)
+  populate = D3CategoryFunding.create(x: x, y: y, color: color, cat_name: cat_name, sub_cat: sub_cat)
     y_counter += 1
 
     if y == y_stop

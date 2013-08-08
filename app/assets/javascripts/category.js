@@ -97,7 +97,6 @@ function displayData(dataset){
         .outerRadius(radius - 10)
         .innerRadius(0);
 
-
       var pie = d3.layout.pie()
         .sort(null)
         .value(function(array) { return array[1]; });

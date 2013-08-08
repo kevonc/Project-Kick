@@ -19,11 +19,23 @@ class CategoriesController < ApplicationController
   end
 
   def funding
-    @projects = Project.where(:expired => true)
+      @overfunded_average = average_overfunded_hash
 
     respond_to do |format|
       format.html
-      format.json {render :json => @projects}
+      format.json {render :json => @overfunded_average}
     end
   end
 end
+
+def average_overfunded_hash
+  overfunded = Hash.new(0)
+  categories = Category.all
+  categories.each do |category|
+    sum = category.project_overfunded_percentages.inject(:+)
+    average = sum/(category.project_overfunded_percentages).length
+    overfunded[category.name] = average.round(2)
+  end
+  overfunded
+end
+
