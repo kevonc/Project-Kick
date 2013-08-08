@@ -48,58 +48,58 @@ task :populate_category_projects => :environment do
   case run
     when 0..(art - 1)
       cat_name = "Arts"
-      color = "#d5b92a"
+      color = "#fc6a6a"
       sub_cat = find_sub_categories("Art")
     when art..(comics - 1)
       cat_name = "Comics"
-      color = "#e36f26"
+      color = "#fcb26a"
       sub_cat = find_sub_categories("Comics")
     when comics..(dance - 1)
       cat_name = "Dance"
-      color = "#f16776"
+      color = "#fce26a"
       sub_cat = find_sub_categories("Dance")
     when dance..(design - 1)
       cat_name = "Design"
-      color = "#d33f35"
+      color = "#c0fc6a"
       sub_cat = find_sub_categories("Design")
     when design..(fashion - 1)
       cat_name = "Fashion"
-      color = "#b02e30"
+      color = "#6afc89"
       sub_cat = find_sub_categories("Fashion")
     when fashion..(filmnvideo - 1)
       cat_name = "Film & Video"
-      color = "#923442"
+      color = "#6afce6"
       sub_cat = find_sub_categories("Film & Video")
     when filmnvideo..(food - 1)
       cat_name = "Food"
-      color = "#86374d"
+      color = "#6abcfc"
       sub_cat = find_sub_categories("Food")
     when food..(games - 1)
       cat_name = "Games"
-      color = "#5b4961"
+      color = "#6a7efc"
       sub_cat = find_sub_categories("Games")
     when games..(music - 1)
       cat_name = "Music"
-      color = "#4c9ec3"
+      color = "#896afc"
       sub_cat = find_sub_categories("Music")
     when music..(photography - 1)
       cat_name = "Photography"
-      color = "#27709d"
+      color = "#ca6afc"
       sub_cat = find_sub_categories("Photography")
     when photography..(publishing - 1)
       cat_name = "Publishing"
-      color = "#318a6c"
+      color = "#fc6adf"
       sub_cat = find_sub_categories("Publishing")
     when publishing..(theater - 1)
       cat_name = "Theater"
-      color = "#72a94b"
+      color = "#fc6a93"
       sub_cat = find_sub_categories("Theater")
     when theater..(technology - 1)
       cat_name = "Technology"
-      color = "#873625"
+      color = "#fc6a6a"
       sub_cat = find_sub_categories("Technology")
     else
-      color = "#000000"
+      color = "#ffffff"
   end
 
     populate = D3CategoryProject.create(x: x, y: y, color: color, cat_name: cat_name, sub_cat: sub_cat)
@@ -168,58 +168,58 @@ task :populate_category_funding => :environment do
   case run
     when 0..(art - 1)
       cat_name = "Arts"
-      color = "#d5b92a"
+      color = "#fc6a6a"
       sub_cat = find_sub_categories("Art")
     when art..(comics - 1)
       cat_name = "Comics"
-      color = "#e36f26"
+      color = "#fcb26a"
       sub_cat = find_sub_categories("Comics")
     when comics..(dance - 1)
       cat_name = "Dance"
-      color = "#f16776"
+      color = "#fce26a"
       sub_cat = find_sub_categories("Dance")
     when dance..(design - 1)
       cat_name = "Design"
-      color = "#d33f35"
+      color = "#c0fc6a"
       sub_cat = find_sub_categories("Design")
     when design..(fashion - 1)
       cat_name = "Fashion"
-      color = "#b02e30"
+      color = "#6afc89"
       sub_cat = find_sub_categories("Fashion")
     when fashion..(filmnvideo - 1)
       cat_name = "Film & Video"
-      color = "#923442"
+      color = "#6afce6"
       sub_cat = find_sub_categories("Film & Video")
     when filmnvideo..(food - 1)
       cat_name = "Food"
-      color = "#86374d"
+      color = "#6abcfc"
       sub_cat = find_sub_categories("Food")
     when food..(games - 1)
       cat_name = "Games"
-      color = "#5b4961"
+      color = "#6a7efc"
       sub_cat = find_sub_categories("Games")
     when games..(music - 1)
       cat_name = "Music"
-      color = "#4c9ec3"
+      color = "#896afc"
       sub_cat = find_sub_categories("Music")
     when music..(photography - 1)
       cat_name = "Photography"
-      color = "#27709d"
+      color = "#ca6afc"
       sub_cat = find_sub_categories("Photography")
     when photography..(publishing - 1)
       cat_name = "Publishing"
-      color = "#318a6c"
+      color = "#fc6adf"
       sub_cat = find_sub_categories("Publishing")
     when publishing..(theater - 1)
       cat_name = "Theater"
-      color = "#72a94b"
+      color = "#fc6a93"
       sub_cat = find_sub_categories("Theater")
     when theater..(technology - 1)
       cat_name = "Technology"
-      color = "#873625"
+      color = "#fc6a6a"
       sub_cat = find_sub_categories("Technology")
     else
-      color = "#000000"
+      color = "#ffffff"
   end
 
   populate = D3CategoryFunding.create(x: x, y: y, color: color, cat_name: cat_name, sub_cat: sub_cat)

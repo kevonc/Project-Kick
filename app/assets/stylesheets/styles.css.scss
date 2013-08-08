@@ -3,14 +3,15 @@
 html, body {
   margin: 0;
   padding: 0;
+  font-family: 'Armata', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #386a6e;
 }
 
 svg {
-}
-
-#topbar {
-  height: 8px;
-  background-color: #65bfb8;
 }
 
 #container {
@@ -18,38 +19,81 @@ svg {
   margin: 0 auto;
 }
 
+.clear {
+  clear: both;
+}
+
 nav {
-  font-family: 'Armata', sans-serif;
-  margin-bottom: 30px;
+  margin: 10px 0;
   h3 {
+    text-transform: uppercase;
+    font-size: 2em;
     margin: 0;
+    a {
+      color: #000;
+    }
   }
   h5 {
     margin: 0;
   }
+  .site {
+    float: left;
+  }
   ul {
+    float: right;
     list-style: none;
     margin: 0;
     padding: 0;
     li {
       float: left;
+      margin-top: 36px;
       padding-right: 20px;
-      font-size: 0.8em;
+      font-size: 0.9em;
     }
   }
 }
 
-button {
-  font-family: 'Armata', sans-serif;
-  padding: 8px;
-  border-radius: 10px;
-  margin-bottom: 20px;
+.nav-bar {
+  height: 1px;
+  background-color: #F2F2F2;
+  margin-top: 10px;
 }
 
-button:hover {
-  background-color: #333333;
-  color: #ffffff;
-  border-radius: 10px;
+.button_field {
+  width: 100%;
+  text-align: center;
+}
+
+button {
+  font-family: 'Armata', sans-serif;
+  font-size: 1em;
+  color: #fff !important;
+  border-radius: 5px;
+  word-spacing: 0.25em;
+  text-transform: uppercase;
+  border: none;
+  line-height: 12px;
+  padding: 12px 13px 11px;
+  text-align: center;
+  display: inline-block;
+  margin-top: 0;
+  margin-bottom: 12px;
+  text-decoration: none;
+  background: #5e5e5e;
 }
 
 #overfunding {margin-top:50px}
+
+button:hover{
+  cursor: pointer;
+  color: rgba(255,255,255, 0.75);
+  text-decoration: none;
+  -webkit-box-shadow:inset 0 10px 20px rgba(255,255,255, 0.10);
+  -moz-box-shadow: inset 0 10px 20px rgba(255,255,255, 0.10);
+  box-shadow: inset 0 10px 20px rgba(255,255,255, 0.10);
+}
+button:active {
+  -webkit-box-shadow: inset 0 2px 2px rgba(0,0,0, 0.3), inset 0 10px 20px rgba(0,0,0, 0.08);
+  -moz-box-shadow: inset 0 2px 2px rgba(0,0,0, 0.3), inset 0 10px 20px rgba(0,0,0, 0.08);
+  box-shadow: inset 0 2px 2px rgba(0,0,0, 0.3), inset 0 10px 20px rgba(0,0,0, 0.08);
+}
