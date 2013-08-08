@@ -22,7 +22,8 @@ class CategoriesController < ApplicationController
     @projects = Project.all
 
     respond_to do |format|
-      format.json {render :json => @projects}
+      format.html
+      format.json { render :json => @projects }
     end
   end
 end

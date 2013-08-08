@@ -38,19 +38,19 @@ function displayData(dataset){
       .attr("x", 300).attr("y", 150)
       .attr("rx", boardBorder) // radius
       .attr("width", boardWidth).attr("height", boardHeight)
-      .attr("fill", "#fff")
-      .transition()
-      .duration(1000);
+      .attr("fill", "#fff");
 
     newSquares.append("rect")
-      .attr("fill", "#fff")
+      .transition()
+      .styleTween("fill", function(d, i) { return d3.interpolate("#fff", d.color); })
+      .duration(1000)
+      .ease("linear")
       .attr("id", function (d, i) { return "square_" + i; })
       .attr("x", function (d, i) { return d.x; })
       .attr("y", function (d, i) { return d.y; })
       .attr("width", squareSize)
       .attr("height", squareSize)
       .attr("rx", boardBorder)
-      .attr("fill", function (d, i) { return d.color; })
       .on("mouseover", function(d, i) {
         d3.select(this)
         .attr("fill", "#fff")
@@ -82,7 +82,7 @@ function displayData(dataset){
         array.push(singleArray);
       }
 
-      d3.select("#sub-cat").classed("hidden", false);
+      // d3.select("#sub-cat").classed("hidden", false);
 
       ///////////////////////////////////////////////////////
 
