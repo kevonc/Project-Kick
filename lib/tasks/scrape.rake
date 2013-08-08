@@ -149,7 +149,7 @@ def create_record(agent, project_links)
     days_left = project_page.search("meta[property='twitter:data2']").attr("content").value.to_i
     days_left == 0 ? expired = true : expired = false
 
-    overfunded = ((funding.to_f / goal.to_f) * 100) - 100 if expired == true
+    overfunded = (((funding.to_f / goal.to_f) * 100) - 100).round(4) if expired == true
     main_category = ""
 
     city_name = project_page.search("#project-metadata .location a").text.gsub("\n","")
@@ -167,7 +167,6 @@ def create_record(agent, project_links)
       category = Category.find_or_create_by_name(category_name)
       category.total_projects += 1
       category.total_funding += funding
-      category.project_overfunded_percentages = []
 
       # Consider moving this to a function
       categories = {"Art" => ["Art", "Conceptual Art", "Crafts", "Digital Art", "Illustration", "Painting", "Performance Art",
@@ -194,7 +193,12 @@ def create_record(agent, project_links)
       end
 
       category.main_category = main_category
-      category.project_overfunded_percentages << overfunded if expired == true
+      if category.project_overfunded_percentages.nil?
+        category.project_overfunded_percentages = []
+        category.project_overfunded_percentages << overfunded if expired == true
+      else
+        category.project_overfunded_percentages << overfunded if expired == true
+      end
       category.save
 
       puts "Scraping #{city_name}"
