@@ -9,6 +9,8 @@ gem 'pg'
 gem 'mechanize'
 gem 'devise'
 gem 'activerecord-postgres-hstore'
+gem 'twitter'
+gem 'dotenv'
 
 
 # Gems used only for assets and not required

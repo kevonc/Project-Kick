@@ -30,27 +30,18 @@ function displayData(dataset){
       .attr("width", boardWidth)
       .attr("height", boardHeight);
 
-    var newSquares = svg_category_project.selectAll("rect")
+    svg_category_project.selectAll("rect")
       .data(data)
-      .enter();
-
-    svg_category_project.append("rect")
-      .attr("x", 300).attr("y", 150)
-      .attr("rx", boardBorder) // radius
-      .attr("width", boardWidth).attr("height", boardHeight)
-      .attr("fill", "#fff");
-
-    newSquares.append("rect")
-      .transition()
-      .styleTween("fill", function(d, i) { return d3.interpolate("#fff", d.color); })
-      .duration(1000)
-      .ease("linear")
+      .enter().append("rect")
+      .attr("fill", "#fff")
       .attr("id", function (d, i) { return "square_" + i; })
-      .attr("x", function (d, i) { return d.x; })
-      .attr("y", function (d, i) { return d.y; })
-      .attr("width", squareSize)
-      .attr("height", squareSize)
+      .attr("x", function (d, i) { return d.x + 12; })
+      .attr("y", function (d, i) { return d.y + 50; })
+      .attr("width", 2)
+      .attr("height", 2)
       .attr("rx", boardBorder)
+      .attr("fill", function(d, i) { return d.color; })
+      .attr("opacity", 0.5)
       .on("mouseover", function(d, i) {
         d3.select(this)
         .attr("fill", "#fff")
@@ -71,6 +62,15 @@ function displayData(dataset){
           .attr("stroke-width", 0);
         // d3.select("#sub-cat").classed("hidden", true);
       });
+
+      d3.selectAll("rect").transition()
+        .attr("x", function (d, i) { return d.x; })
+        .attr("y", function (d, i) { return d.y; })
+        .attr("width", squareSize)
+        .attr("height", squareSize)
+        .attr("opacity", 1)
+        .delay(function(d, i) { return i * 2; })
+        .duration(400);
 
     function subCatBreakdown(data) {
       var array = [];
