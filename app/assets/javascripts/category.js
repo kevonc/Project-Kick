@@ -1,12 +1,14 @@
 $(function(){
-  // displayData("totalprojectsbycategories");
-  // displayData("totalfundingbycategories");
-  d3.selectAll("button").on("click", function(){
-    if (d3.select(this).attr("id") === "projectscategories"){
-      displayData("totalprojectsbycategories");
-    } else if (d3.select(this).attr("id") === "fundingcategories"){
-      displayData("totalfundingbycategories");
-    }
+  displayData("totalprojectsbycategories");
+  $("#projectscategories").on("click", function(){
+    d3.select("#category").select("svg").remove();
+    d3.select("#sub-cat").select("svg").remove();
+    displayData("totalprojectsbycategories");
+  });
+  $("#fundingcategories").on("click", function(){
+    d3.select("#category").select("svg").remove();
+    d3.select("#sub-cat").select("svg").remove();
+    displayData("totalfundingbycategories");
   });
 });
 
@@ -36,7 +38,9 @@ function displayData(dataset){
       .attr("x", 300).attr("y", 150)
       .attr("rx", boardBorder) // radius
       .attr("width", boardWidth).attr("height", boardHeight)
-      .attr("fill", "#fff");
+      .attr("fill", "#fff")
+      .transition()
+      .duration(1000);
 
     newSquares.append("rect")
       .attr("fill", "#fff")
@@ -119,7 +123,6 @@ function displayData(dataset){
         .attr("fill", "#ffffff")
         .attr("font-family", "Armata")
         .text(function(d, i) { return array[i][0]; });
-
     }
   });
 };
