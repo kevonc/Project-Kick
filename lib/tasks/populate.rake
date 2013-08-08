@@ -232,3 +232,29 @@ task :populate_category_funding => :environment do
     run += 1
   end
 end
+
+
+  expired = Project.find_all_by_expired(true)
+  ids = []
+  expired.each do |project|
+    ids.push(project.category_id)
+  end
+unique_ids = expired.map(&:category_id)
+overfunded = Hash.new(0)
+unique_ids.each do |unique_id|
+  projects = Project.find_all_by_category_id(unique_id)
+  projects.each do |project|
+    temp = []
+    unless project.overfunded.nil?
+      overfunded[unique_id] = []
+      overfunded[unique_id].push(project.overfunded)
+      sum = overfunded[unique_id].sum
+      average = sum/((overfunded[unique_id]).length).to_f
+      overfunded[unique_id] = average
+    end
+  end
+end
+
+
+
+

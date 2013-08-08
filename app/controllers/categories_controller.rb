@@ -19,7 +19,7 @@ class CategoriesController < ApplicationController
   end
 
   def funding
-    @projects = Project.all
+    @projects = Project.where(:expired => true)
 
     respond_to do |format|
       format.html
