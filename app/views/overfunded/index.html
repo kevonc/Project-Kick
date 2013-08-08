@@ -53,6 +53,19 @@
             .attr("text-anchor", "middle")
             .attr("dy", ".35em");
 
+    var data = {
+        category: "bob",
+        overfunded: 200
+    };
+
+//    arc.endAngle(0)
+//            .attr("test","test")
+//            .transition()
+//            .duration(1000)
+//            .endAngle(function(d) {
+//                console.log(d.overfunded);
+//                return d.overfunded
+//            });
     d3.json("https://api.github.com/repos/mbostock/d3/git/blobs/2e0e3b6305fa10c1a89d1dfd6478b1fe7bc19c1e?" + Math.random())
             .on("progress", function() {
                 var i = d3.interpolate(progress, d3.event.loaded / total);
@@ -65,7 +78,7 @@
                 });
             })
             .get(function(error, data) {
-                meter.transition().delay(2500).attr("transform", "scale(0)");
+                meter.transition().delay(250).attr("transform", "scale(0)");
             });
 
 </script>
