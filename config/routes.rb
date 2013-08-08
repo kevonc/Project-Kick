@@ -3,11 +3,11 @@ Kickstarter::Application.routes.draw do
 
   root :to => 'cities#index'
   get '/totalprojectsbycities' => "cities#totalprojects"
-
   get '/totalfundingbycities' => "cities#totalfunding"
 
   get '/category' => 'categories#index', as: "category"
   get '/totalprojectsbycategories' => 'categories#totalprojects'
+  get '/totalfundingbycategories' => 'categories#totalfunding'
 
   get '/cities/chart' => 'cities#chart'
 

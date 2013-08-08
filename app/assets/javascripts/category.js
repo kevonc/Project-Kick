@@ -1,6 +1,18 @@
 $(function(){
+  // displayData("totalprojectsbycategories");
+  // displayData("totalfundingbycategories");
+  d3.selectAll("button").on("click", function(){
+    if (d3.select(this).attr("id") === "projectscategories"){
+      displayData("totalprojectsbycategories");
+    } else if (d3.select(this).attr("id") === "fundingcategories"){
+      displayData("totalfundingbycategories");
+    }
+  });
+});
+
+function displayData(dataset){
   $.ajax({
-    url: '/totalprojectsbycategories',
+    url: '/' + dataset,
     type: 'GET',
     dataType: 'JSON'
   }).done(function(data){
@@ -16,10 +28,6 @@ $(function(){
       .attr("width", boardWidth)
       .attr("height", boardHeight);
 
-    // var svg_category_project_breakdown = d3.select("#sub-cat").append("svg")
-    //   .attr("width", boardWidth - (boardBorder * 2))
-    //   .attr("height", 200);
-
     var newSquares = svg_category_project.selectAll("rect")
       .data(data)
       .enter();
@@ -32,8 +40,6 @@ $(function(){
 
     newSquares.append("rect")
       .attr("fill", "#fff")
-      // .transition()
-      // .duration(2000)
       .attr("id", function (d, i) { return "square_" + i; })
       .attr("x", function (d, i) { return d.x; })
       .attr("y", function (d, i) { return d.y; })
@@ -114,46 +120,6 @@ $(function(){
         .attr("font-family", "Armata")
         .text(function(d, i) { return array[i][0]; });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      /////////////////////////////////////////////////////////
-
-      // var newCircles = svg_category_project_breakdown.selectAll("circle")
-      //   .data(array)
-      //   .enter();
-
-      // newCircles.append("circle")
-      //   .attr("cx", function(d, i) { return d[1] * 20 ; })
-      //   .attr("cy", 120)
-      //   .attr("r", function(d, i) { return Math.log(d[1]) * 10 ; })
-      //   .attr("fill", "#2E64FE");
-
-      // debugger;
-      // var newText = svg_category_project_breakdown.selectAll("text")
-      //   .data(array)
-      //   .enter()
-      //   .append("text")
-      //   .attr("x", 50)
-      //   .attr("y", 80)
-      //   .attr("text-anchor", "middle")
-      //   .text("hello");
     }
   });
-});
+};
