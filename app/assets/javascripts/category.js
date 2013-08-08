@@ -88,7 +88,7 @@ function displayData(dataset){
 
       var pieWidth = 500,
           pieHeight = 300,
-          radius = Math.min(pieWidth, pieHeight) / 2;
+          radius = Math.min(pieWidth, pieHeight) / 3;
 
       var color = d3.scale.ordinal()
         .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
@@ -96,6 +96,7 @@ function displayData(dataset){
       var arc = d3.svg.arc()
         .outerRadius(radius - 10)
         .innerRadius(0);
+
 
       var pie = d3.layout.pie()
         .sort(null)
@@ -116,13 +117,35 @@ function displayData(dataset){
         .attr("d", arc)
         .style("fill", "#216e94");
 
+      var pos = d3.svg.arc().innerRadius(radius + 50).outerRadius(radius + 30);
       g.append("text")
-        .attr("transform", function(array) { return "translate(" + arc.centroid(array) + ")"; })
-        .attr("dy", ".71em")
-        .style("text-anchor", "middle")
-        .attr("fill", "#ffffff")
-        .attr("font-family", "Armata")
-        .text(function(d, i) { return array[i][0]; });
+        .attr("transform", function(array) { return "translate(" + pos.centroid(array) + ")"; })
+        .attr("dy", 5)
+        .attr("text-anchor", "middle")
+        .attr("fill", "#000000")
+       // .attr("fill", function(d, i) { return colorL(i); }) //Colorarray Labels
+       // .attr("display", function(d) { return d.value >= 2 ? null : "none"; })
+       .text(function(d, i) { return array[i][0]; })
+        .attr("font-family", "Armata");
+        // .text(function(d, i) { return array[i][0]; });
     }
   });
 };
+
+
+
+// .attr("transform", function(d) {
+//     var c = arc.centroid(d),
+//         x = c[0],
+//         y = c[1],
+//         // pythagorean theorem for hypotenuse
+//         h = Math.sqrt(x*x + y*y);
+//     return "translate(" + (x/h * labelr) +  ',' +
+//        (y/h * labelr) +  ")";
+// })
+
+
+// .attr("text-anchor", function(d) {
+//     return (d.endAngle + d.startAngle)/2 > Math.PI ?
+//         "end" : "start";
+// })

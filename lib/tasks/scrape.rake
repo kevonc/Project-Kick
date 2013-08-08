@@ -126,7 +126,7 @@ end
 
 
 def get_project_urls(agent, mass_url, project_links, ending_page)
-  for i in 1..ending_page
+  for i in 20..ending_page
     page = agent.get(mass_url + i.to_s)
     page.search(".project-thumbnail a").each do |project|
       project_links << project.attr("href")
@@ -167,6 +167,7 @@ def create_record(agent, project_links)
       category = Category.find_or_create_by_name(category_name)
       category.total_projects += 1
       category.total_funding += funding
+      category.average_overfunded_percentage = []
 
       # Consider moving this to a function
       categories = {"Art" => ["Art", "Conceptual Art", "Crafts", "Digital Art", "Illustration", "Painting", "Performance Art",
@@ -193,6 +194,7 @@ def create_record(agent, project_links)
       end
 
       category.main_category = main_category
+      category.average_overfunded_percentage << overfunded if expired == true
       category.save
 
       puts "Scraping #{city_name}"
