@@ -26,18 +26,18 @@ class CategoriesController < ApplicationController
       format.json {render :json => @overfunded_average}
     end
   end
-end
 
-def average_overfunded_hash
-  overfunded = []
-  categories = Category.all
-  categories.each do |category|
-    sum = category.project_overfunded_percentages.inject(:+)
-    average = sum/(category.project_overfunded_percentages).length
-    cat_temp = {}
-    cat_temp[:name] = category.name
-    cat_temp[:percentage] = average.round(2)
-    overfunded << cat_temp
+  def average_overfunded_hash
+    overfunded = []
+    categories = Category.all
+    categories.each do |category|
+      sum = category.project_overfunded_percentages.inject(:+)
+      average = sum/(category.project_overfunded_percentages).length
+      cat_temp = {}
+      cat_temp[:name] = category.name
+      cat_temp[:percentage] = average.round(2)
+      overfunded << cat_temp
+    end
+    overfunded
   end
-  overfunded
 end

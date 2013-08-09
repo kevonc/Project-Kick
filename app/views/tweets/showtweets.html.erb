@@ -1,21 +1,23 @@
 <div class="official">
   <h2>The Latest Kickstarter News ...</h2>
-  <% @official_tweets[0..14].each_with_index do |tweet, i| %>
+  <% @official_tweets[0..9].each_with_index do |tweet, i| %>
     <div class="span" id="tweet_<%= i + 1 %>" >
-      <%= tweet.text %><br>
-      @<%= tweet.user.name %><br>
-      <%= tweet.created_at.strftime("Posted on %m/%d/%Y, at %I:%M%p") %><br>
+      <h3>"<%= tweet.text %>"</h3>
+      <p><%= link_to "@" + tweet.user.screen_name, "http://twitter.com/" + tweet.user.screen_name, target: "_blank" %></p>
+      <p class="time"><%= tweet.created_at.strftime("%m/%d/%Y, at %I:%M%p") %></p>
     </div>
   <% end %>
 </div>
 
 <div class="people">
   <h2>What People Are Saying ...</h2>
-  <% @people_tweets.each do |tweet| %>
+  <% @people_tweets[0..9].each do |tweet| %>
    <div class="span">
-     <%= tweet[:text] %><br>
-     <%= tweet[:user][:name] %><br>
-     <%= Time.parse(tweet[:created_at]).strftime("Posted on %m/%d/%Y, at %I:%M%p") %><br>
+     <h3>"<%= tweet[:text] %>"</h3>
+     <p><%= link_to "@" + tweet[:user][:screen_name], "http://twitter.com/" + tweet[:user][:screen_name], target: "_blank" %></p>
+     <p class="time"><%= Time.parse(tweet[:created_at]).strftime("%m/%d/%Y, at %I:%M%p") %></p>
    </div>
   <% end %>
 </div>
+
+<div class="clear"></div>

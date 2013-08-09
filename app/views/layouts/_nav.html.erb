@@ -4,7 +4,10 @@
     <h5>Data Visualization for Kickstarter Projects</h5>
   </div>
   <ul>
-    <li><%= link_to "About", "" %></li>
+  <div class="creators">
+    <p>Created by <%= link_to "Alina Guzman", "http://alinaguzman.com/", target: "_blank" %> & <%= link_to "Kevon Cheung", "http://kevoncheung.com/", target: "_blank" %></p>
+  </div>
+    <li><%= link_to "About", about_path %></li>
     <li><%= link_to "By City", root_path %></li>
     <li><%= link_to "By Category", category_path %></li>
     <li><%= link_to "Marvel", funding_path %></li>
