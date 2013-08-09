@@ -1,5 +1,5 @@
 $(function(){
-    var w = 1100;
+    var w = 960;
     var h = 500;
 
     //Create SVG element
@@ -13,6 +13,8 @@ $.ajax({
     type: 'GET',
     dataType: 'JSON'
 }).done(function(data){
+
+    console.log(data)
            var dataset = data.sort(function(a,b) {
                return parseFloat(b.percentage) - parseFloat(a.percentage)
            } );
@@ -20,11 +22,13 @@ $.ajax({
         var names = [];
         var values = [];
 
-        for (var i=0; i<10; i++){
+        for (var i=0; i<8; i++){
             names.push(dataset[i].name);
             values.push(dataset[i].percentage);
         }
 
+    console.log(names)
+    console.log(values)
 var xScale = d3.scale.ordinal()
     .domain(d3.range(values.length))
     .rangeRoundBands([0, w], .03);
@@ -59,7 +63,10 @@ var yScale = d3.scale.linear()
                     .transition()
                     .duration(250)
                     .attr("fill", "#76CC1E");
-            });
+            })
+          .on("click", function() {
+            sortBars();
+          });
 
 
 //Create labels
@@ -68,7 +75,7 @@ svg.selectAll("text")
     .enter()
     .append("text")
     .text(function(d,i) {
-        return d + dataset[i].percentage + "%";
+        return d + "  -  " + dataset[i].percentage + "%";
     })
     .attr("text-anchor", "middle")
     .attr("x", function(d, i) {
@@ -89,7 +96,19 @@ svg.selectAll("text")
     });
 });
 
+var sortBars = function() {
 
+  svg.selectAll("rect")
+    .sort(function(a, b) {
+      return d3.descending(a, b);
+    })
+    .transition()
+    .duration(1000)
+    .attr("x", function(d, i) {
+      return xScale(i);
+    });
+
+};
 
 
 
