@@ -23,7 +23,6 @@ $.ajax({
         for (var i=0;i<9;i++){
             names.push(dataset[i].name);
             values.push(dataset[i].percentage);
-
         }
 
 var xScale = d3.scale.ordinal()
@@ -31,14 +30,9 @@ var xScale = d3.scale.ordinal()
     .rangeRoundBands([0, w], .1);
 
 var yScale = d3.scale.linear()
-    .domain([0, d3.max(dataset)])
+    .domain([0, d3.max(dataset).percentage])
     .range([0, h]);
 
-        debugger;
-
-        console.log(names);
-        console.log(values);
-//Create bars
         svg.selectAll("rect")
             .data(values)
             .enter()
@@ -47,12 +41,11 @@ var yScale = d3.scale.linear()
                 return xScale(i);
             })
             .attr("y", function(d) {
-                //return h - yScale(d);
-                return yScale(d) ;
+                return h - yScale(d);
             })
             .attr("width", xScale.rangeBand())
             .attr("height", function(d) {
-                return d;
+                return d ;
             })
             .attr("fill", function(d) {
                 return "rgb(" + (d * 10) + ", 0, " + (d * 10) + ")";
@@ -81,8 +74,8 @@ svg.selectAll("text")
         return xScale(i) + xScale.rangeBand() / 2;
     })
     .attr("y", function(d) {
-       // return h - yScale(d) + 14;
-       return 90;
+       //return h - yScale(d) ;
+       return 600;
     })
     .attr("font-family", "sans-serif")
     .attr("font-size", "12px")
