@@ -30,26 +30,14 @@ end
 
 def average_overfunded_hash
   overfunded = []
-  cat_temp = Hash.new(0)
   categories = Category.all
   categories.each do |category|
     sum = category.project_overfunded_percentages.inject(:+)
     average = sum/(category.project_overfunded_percentages).length
+    cat_temp = {}
     cat_temp[:name] = category.name
     cat_temp[:percentage] = average.round(2)
     overfunded << cat_temp
   end
   overfunded
 end
-
-#def average_overfunded_hash
-#  overfunded = Hash.new(0)
-#  categories = Category.all
-#  categories.each do |category|
-#    sum = category.project_overfunded_percentages.inject(:+)
-#    average = sum/(category.project_overfunded_percentages).length
-#    overfunded[category.name] = average.round(2)
-#  end
-#  overfunded
-#end
-
