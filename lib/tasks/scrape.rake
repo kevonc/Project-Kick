@@ -149,7 +149,7 @@ def create_record(agent, project_links)
     days_left = project_page.search("meta[property='twitter:data2']").attr("content").value.to_i
     days_left == 0 ? expired = true : expired = false
 
-    overfunded = (((funding.to_f / goal.to_f) * 100) - 100).round(4) if expired == true
+    overfunded = ((funding.to_f / goal.to_f) * 100).round(4) if expired == true
     main_category = ""
 
     city_name = project_page.search("#project-metadata .location a").text.gsub("\n","")
