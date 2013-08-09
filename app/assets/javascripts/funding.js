@@ -1,6 +1,6 @@
 $(function(){
-    var w = 1000;
-    var h = 600;
+    var w = 1100;
+    var h = 500;
 
     //Create SVG element
     var svg = d3.select("#overfunding")
@@ -20,14 +20,14 @@ $.ajax({
         var names = [];
         var values = [];
 
-        for (var i=0;i<9;i++){
+        for (var i=0; i<10; i++){
             names.push(dataset[i].name);
             values.push(dataset[i].percentage);
         }
 
 var xScale = d3.scale.ordinal()
     .domain(d3.range(values.length))
-    .rangeRoundBands([0, w], .1);
+    .rangeRoundBands([0, w], .03);
 
 var yScale = d3.scale.linear()
     .domain([0, d3.max(dataset).percentage])
@@ -41,25 +41,26 @@ var yScale = d3.scale.linear()
                 return xScale(i);
             })
             .attr("y", function(d) {
-                return h - yScale(d);
+                return h - yScale(d) + 50;
             })
             .attr("width", xScale.rangeBand())
             .attr("height", function(d) {
                 return d ;
             })
             .attr("fill", function(d) {
-                return "#6b486b";
+                return "#76CC1E";
             })
             .on("mouseover", function() {
                 d3.select(this)
-                    .attr("fill", "#386a6e");
+                    .attr("fill", "#FC6A6A");
             })
             .on("mouseout", function(d) {
                 d3.select(this)
                     .transition()
                     .duration(250)
-                    .attr("fill", "rgb(0, 0, " + (d * 10) + ")");
+                    .attr("fill", "#76CC1E");
             });
+
 
 //Create labels
 svg.selectAll("text")
@@ -67,22 +68,32 @@ svg.selectAll("text")
     .enter()
     .append("text")
     .text(function(d,i) {
-        return d + "\n" + dataset[i].percentage;
+        return d + dataset[i].percentage + "%";
     })
     .attr("text-anchor", "middle")
     .attr("x", function(d, i) {
+    //debugger;
         return xScale(i) + xScale.rangeBand() / 2;
     })
-    .attr("y", function(d) {
-       //return h - yScale(d) ;
-       return 600;
+    .attr("y", function(d,i) {
+       //return h - yScale(d);
+    //debugger;
+       //return 40 + (h-i);
+    return h - yScale(dataset[i].percentage)+50;
     })
-    .attr("font-family", "Tulpen One")
-    .attr("font-size", "22px")
+  .attr("text-anchor", "middle")
+
+  .attr("font-family", "Tulpen One")
+    .attr("font-size", "25px")
     .attr("fill", "black");
     });
 });
-//
+
+
+
+
+
+
 //var xAxis = svg.d3.axis()
 //    .scale(xScale)
 //    .text("test","Test");
