@@ -13,8 +13,11 @@ $.ajax({
     type: 'GET',
     dataType: 'JSON'
 }).done(function(data){
-        var dataset = [];
 
+
+
+
+        var dataset = [];
         for (var k in data) {
             var singleArray = [];
             singleArray.push(k);
@@ -22,20 +25,31 @@ $.ajax({
             dataset.push(singleArray);
         }
 
+           var new_array = dataset.sort((function(index){
+                return function(a, b){
+                    return (a[index] === b[index] ? (a[index] < b[index] ? -1 : 1) : 0);
+                };
+            })(1));
         debugger;
 
+
+console.log(dataset);
+console.log(new_array);
+
+
 var xScale = d3.scale.ordinal()
-    .domain(d3.range(dataset.length))
-    .rangeRoundBands([0, w], 0.1);
+    .domain(d3.range(dataset.length/2))
+    .rangeRoundBands([0, 2000], .1);
+
 
 var yScale = d3.scale.linear()
     .domain([0, d3.max(dataset)[1]])
-    .range([0, h]);
+    .range([0, 100]);
 
         var names = [];
         var values = [];
 
-        for (var i=0;i<dataset.length;i++){
+        for (var i=0;i<15;i++){
             names.push(dataset[i][0]);
             values.push(dataset[i][1]);
             names;
@@ -91,3 +105,16 @@ svg.selectAll("text")
     .attr("fill", "black");
     });
 });
+
+var xAxis = svg.d3.axis()
+    .scale(xScale)
+    .text("test","Test");
+
+
+
+svg.append("g")
+    .call(xAxis)
+    .orient("bottom")
+    .attr("transform","translate(10,10")
+    .tickFormat(function(d,i){
+        return d[i]});
