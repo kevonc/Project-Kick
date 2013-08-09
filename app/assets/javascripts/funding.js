@@ -1,5 +1,5 @@
 $(function(){
-    var w = 1000;
+    var w = 1100;
     var h = 500;
 
     //Create SVG element
@@ -20,14 +20,14 @@ $.ajax({
         var names = [];
         var values = [];
 
-        for (var i=0;i<9;i++){
+        for (var i=0; i<10; i++){
             names.push(dataset[i].name);
             values.push(dataset[i].percentage);
         }
 
 var xScale = d3.scale.ordinal()
     .domain(d3.range(values.length))
-    .rangeRoundBands([0, w], .1);
+    .rangeRoundBands([0, w], .03);
 
 var yScale = d3.scale.linear()
     .domain([0, d3.max(dataset).percentage])
@@ -72,44 +72,28 @@ svg.selectAll("text")
     })
     .attr("text-anchor", "middle")
     .attr("x", function(d, i) {
+    //debugger;
         return xScale(i) + xScale.rangeBand() / 2;
     })
-    .attr("y", function(d) {
+    .attr("y", function(d,i) {
        //return h - yScale(d);
-       return 40;
+    //debugger;
+       //return 40 + (h-i);
+    return h - yScale(dataset[i].percentage)+50;
     })
-    .attr("font-family", "Tulpen One")
-    .attr("font-size", "22px")
+  .attr("text-anchor", "middle")
+
+  .attr("font-family", "Tulpen One")
+    .attr("font-size", "25px")
     .attr("fill", "black");
     });
 });
 
-svg.selectAll("text")
-  .data(names)
-  .enter()
-  .append("text")
-  .text(function(d,i) {
-    return "dddd";
-  })
-  .attr("text-anchor", "middle")
-  .attr("x", function(d, i) {
-    return xScale(i) + xScale.rangeBand() / 2;
-  })
-  .attr("y", function(d) {
-    //return h - yScale(d);
-    return 40;
-  })
-  .attr("font-family", "Tulpen One")
-  .attr("font-size", "22px")
-  .attr("fill", "black");
 
 
 
 
 
-
-
-//
 //var xAxis = svg.d3.axis()
 //    .scale(xScale)
 //    .text("test","Test");
