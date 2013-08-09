@@ -1,6 +1,6 @@
 $(function(){
     var w = 1000;
-    var h = 600;
+    var h = 500;
 
     //Create SVG element
     var svg = d3.select("#overfunding")
@@ -41,25 +41,26 @@ var yScale = d3.scale.linear()
                 return xScale(i);
             })
             .attr("y", function(d) {
-                return h - yScale(d);
+                return h - yScale(d) + 50;
             })
             .attr("width", xScale.rangeBand())
             .attr("height", function(d) {
                 return d ;
             })
             .attr("fill", function(d) {
-                return "#6b486b";
+                return "#76CC1E";
             })
             .on("mouseover", function() {
                 d3.select(this)
-                    .attr("fill", "#386a6e");
+                    .attr("fill", "#FC6A6A");
             })
             .on("mouseout", function(d) {
                 d3.select(this)
                     .transition()
                     .duration(250)
-                    .attr("fill", "rgb(0, 0, " + (d * 10) + ")");
+                    .attr("fill", "#76CC1E");
             });
+
 
 //Create labels
 svg.selectAll("text")
@@ -67,21 +68,47 @@ svg.selectAll("text")
     .enter()
     .append("text")
     .text(function(d,i) {
-        return d + "\n" + dataset[i].percentage;
+        return d + dataset[i].percentage + "%";
     })
     .attr("text-anchor", "middle")
     .attr("x", function(d, i) {
         return xScale(i) + xScale.rangeBand() / 2;
     })
     .attr("y", function(d) {
-       //return h - yScale(d) ;
-       return 600;
+       //return h - yScale(d);
+       return 40;
     })
     .attr("font-family", "Tulpen One")
     .attr("font-size", "22px")
     .attr("fill", "black");
     });
 });
+
+svg.selectAll("text")
+  .data(names)
+  .enter()
+  .append("text")
+  .text(function(d,i) {
+    return "dddd";
+  })
+  .attr("text-anchor", "middle")
+  .attr("x", function(d, i) {
+    return xScale(i) + xScale.rangeBand() / 2;
+  })
+  .attr("y", function(d) {
+    //return h - yScale(d);
+    return 40;
+  })
+  .attr("font-family", "Tulpen One")
+  .attr("font-size", "22px")
+  .attr("fill", "black");
+
+
+
+
+
+
+
 //
 //var xAxis = svg.d3.axis()
 //    .scale(xScale)

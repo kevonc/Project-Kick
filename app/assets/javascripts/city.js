@@ -50,10 +50,10 @@ function showprojects() {
                 .transition()
                 .duration(1000)
                 .attr("r", function(d, i) {
-                    return Math.log(data[i].total_projects)*8
+                    return Math.log(data[i].total_projects)*8;
                 })
                 .attr("fill", function(d,i){
-                    return "hsla(" + Math.log(data[i].total_projects)*200 + ",100%,50%,.5)";
+                    return "hsla(" + Math.log(data[i].total_projects)*200 + ",75%,50%,.6)";
                 });
         });
 }
@@ -93,9 +93,20 @@ function showfunding(){
                 .transition()
                 .duration(1000)
                 .attr("r", function(d,i){
-                    return Math.log(data[i].total_funding) })
+                if (data[i].total_funding < 40000){
+                  return 8;
+                } else if (data[i].total_funding > 48000 && data[i].total_funding < 70000){
+                  return 13;
+                } else if (data[i].total_funding > 70000 && data[i].total_funding < 90000){
+                  return 21;
+                } else if (data[i].total_funding > 100000 && data[i].total_funding < 300000){
+                  return 26
+                } else {
+                  return 30;
+                }
+              })
                 .attr("fill", function(d,i){
-                        return "hsla(" + Math.log(data[i].total_funding)*55 + ",100%,50%,.5)";
+                        return "hsla(" + Math.log(data[i].total_funding)*55 + ",75%,50%,.5)";
                 });
         });
 }
