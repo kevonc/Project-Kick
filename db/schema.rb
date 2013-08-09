@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130808195015) do
+ActiveRecord::Schema.define(:version => 20130809173606) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20130808195015) do
     t.string  "color"
     t.string  "cat_name"
     t.hstore  "sub_cat"
+    t.string  "total_funding"
   end
 
   add_index "d3_category_fundings", ["sub_cat"], :name => "index_d3_category_fundings_on_sub_cat"
@@ -49,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20130808195015) do
     t.string  "color"
     t.string  "cat_name"
     t.hstore  "sub_cat"
+    t.integer "total_projects"
   end
 
   add_index "d3_category_projects", ["sub_cat"], :name => "index_d3_category_projects_on_sub_cat"
