@@ -13,6 +13,7 @@ Kickstarter::Application.routes.draw do
   get '/tweets' => 'tweets#showtweets', as: "tweets"
 
   get '/cities/chart' => 'cities#chart'
+  get '/about' => 'home#about', as: "about"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
