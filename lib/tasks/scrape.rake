@@ -139,7 +139,7 @@ def create_record(agent, project_links)
 
   project_links.each do |url|
     project_page = agent.get(project_url + url)
-    title = project_page.search("meta[property='og:title']").attr("content").text.to_s
+    title = project_page.search("meta[property='og:title']").attr("content").text
     backers = project_page.search("#backers_nav .count data").attr("value").value.to_i
     funding = project_page.search("meta[property='twitter:data1']").attr("content").text.gsub("$","").gsub("£","").gsub(",","").to_i
     goal = project_page.search("meta[property='twitter:label1']").attr("content").text.gsub("PLEDGED OF $","").gsub("PLEDGED OF £","").gsub(",","").to_i
