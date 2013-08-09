@@ -119,7 +119,7 @@ function displayData(dataset){
 
       g.append("text")
         .attr("transform", function(array) { return "translate(" + pos.centroid(array) + ")"; })
-        .attr("dy", 5)
+        .attr("dy", '5em')
         .attr("text-anchor", "middle")
         .attr("fill", "#424242")
        // .attr("fill", function(d, i) { return colorL(i); }) //Colorarray Labels
@@ -146,8 +146,6 @@ function displayData(dataset){
 //     return "translate(" + (x/h * labelr) +  ',' +
 //        (y/h * labelr) +  ")";
 // })
-
-
 // .attr("text-anchor", function(d) {
 //     return (d.endAngle + d.startAngle)/2 > Math.PI ?
 //         "end" : "start";
