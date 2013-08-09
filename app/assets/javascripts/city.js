@@ -17,8 +17,6 @@ var projection = [];
 function showprojects() {
     var svg = d3.select("svg");
 
-    //d3.select("#sub-cat").selectAll("circle").data(data).enter().append("circle").attr
-
     $.ajax({
         url: '/totalprojectsbycities',
         type: 'GET',

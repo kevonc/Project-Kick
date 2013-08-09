@@ -19,15 +19,15 @@ function displayData(dataset){
     type: 'GET',
     dataType: 'JSON'
   }).done(function(data){
-    var squareSize = 30;
-    var squaresInRow = 30;
-    var squaresInColumn = 8;
-    var gapSize = 2;
-    var boardBorder = 2;
-    var boardWidth = (squareSize * squaresInRow) + (gapSize * (squaresInRow - 1) + boardBorder * 2);
-    var boardHeight = (squareSize * squaresInColumn) + (gapSize * (squaresInColumn - 1) + boardBorder * 2);
+    var squareSize = 30,
+     squaresInRow = 30,
+     squaresInColumn = 8,
+     gapSize = 2,
+     boardBorder = 2,
+     boardWidth = (squareSize * squaresInRow) + (gapSize * (squaresInRow - 1) + boardBorder * 2),
+     boardHeight = (squareSize * squaresInColumn) + (gapSize * (squaresInColumn - 1) + boardBorder * 2),
 
-    var svg_category_project = d3.select("#category").append("svg")
+     svg_category_project = d3.select("#category").append("svg")
       .attr("width", boardWidth)
       .attr("height", boardHeight);
 

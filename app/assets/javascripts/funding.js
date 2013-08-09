@@ -1,9 +1,9 @@
 $(function(){
-    var w = 960;
-    var h = 500;
+    var w = 960,
+     h = 500,
 
     //Create SVG element
-    var svg = d3.select("#overfunding")
+     svg = d3.select("#overfunding")
         .append("svg")
         .attr("width", w)
         .attr("height", h);
@@ -14,7 +14,6 @@ $.ajax({
     dataType: 'JSON'
 }).done(function(data){
 
-    console.log(data)
            var dataset = data.sort(function(a,b) {
                return parseFloat(b.percentage) - parseFloat(a.percentage)
            } );
@@ -27,8 +26,6 @@ $.ajax({
             values.push(dataset[i].percentage);
         }
 
-    console.log(names)
-    console.log(values)
 var xScale = d3.scale.ordinal()
     .domain(d3.range(values.length))
     .rangeRoundBands([0, w], .03);
