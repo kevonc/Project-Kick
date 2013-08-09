@@ -46,7 +46,7 @@ nav {
     padding: 0;
     li {
       float: left;
-      margin-top: 40px;
+      margin-top: 4px;
       padding-right: 20px;
       font-size: 0.9em;
       &:last-child {
@@ -60,6 +60,14 @@ nav {
   height: 1px;
   background-color: #F2F2F2;
   margin-top: 10px;
+}
+
+.creators {
+  width: 100%;
+  text-align: right;
+  p {
+    font-size: 0.7em;
+  }
 }
 
 .button_field {
