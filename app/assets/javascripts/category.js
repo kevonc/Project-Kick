@@ -43,6 +43,7 @@ function displayData(dataset){
       .attr("fill", function(d, i) { return d.color; })
       .attr("opacity", 0.5)
       .on("mouseover", function(d, i) {
+        $(".hover").remove();
         d3.select("#sub-cat").select("svg").remove();
         d3.select(this)
         .attr("fill", "#fff")
