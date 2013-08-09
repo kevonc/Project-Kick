@@ -119,7 +119,7 @@ function displayData(dataset){
 
       g.append("text")
         .attr("transform", function(array) { return "translate(" + pos.centroid(array) + ")"; })
-        .attr("dy", '5em')
+        .attr("dy", 5)
         .attr("text-anchor", "middle")
         .attr("fill", "#424242")
        // .attr("fill", function(d, i) { return colorL(i); }) //Colorarray Labels
