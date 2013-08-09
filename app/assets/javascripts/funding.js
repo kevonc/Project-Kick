@@ -48,11 +48,11 @@ var yScale = d3.scale.linear()
                 return d ;
             })
             .attr("fill", function(d) {
-                return "rgb(" + (d * 10) + ", 0, " + (d * 10) + ")";
+                return "#6b486b";
             })
             .on("mouseover", function() {
                 d3.select(this)
-                    .attr("fill", "orange");
+                    .attr("fill", "#386a6e");
             })
             .on("mouseout", function(d) {
                 d3.select(this)
@@ -77,8 +77,8 @@ svg.selectAll("text")
        //return h - yScale(d) ;
        return 600;
     })
-    .attr("font-family", "sans-serif")
-    .attr("font-size", "12px")
+    .attr("font-family", "Tulpen One")
+    .attr("font-size", "22px")
     .attr("fill", "black");
     });
 });
