@@ -52,7 +52,11 @@ function displayData(dataset){
         .duration(500)
         .attr("stroke-width", 0)
         .attr("stroke", "#fff");
-        d3.select("#cat-title").text(d.cat_name);
+        if (dataset === "totalprojectsbycategories") {
+          d3.select("#cat-title").text(d.cat_name + " - " + d.total_projects + " Projects");
+        } else {
+          d3.select("#cat-title").text(d.cat_name + " - $" + d.total_funding);
+        }
         d3.select("#sub-cat").insert(subCatBreakdown(d.sub_cat));
       })
       .on("mouseout", function(d, i) {
