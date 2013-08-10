@@ -1,6 +1,6 @@
+# require 'spec_helper'
 require 'rake'
 require 'Mechanize'
-# require 'spec_helper'
 
 describe "scrape recommended task" do
   before do
@@ -75,12 +75,4 @@ describe "scrape recommended task" do
     page = @agent.get(@project_page)
     expect(page.search("#project-metadata .category a").text).to be_a String
   end
-
-  it "should not create duplicated city record" do
-    page = @agent.get(@project_page)
-    newyork = City.create(name: 'New York, NY')
-    newyork2 = City.create(name: 'New York, NY')
-    City.count.should == 1
-  end
-
 end
