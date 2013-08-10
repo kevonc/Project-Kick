@@ -1,11 +1,10 @@
 $(function(){
   showprojects();
-  d3.selectAll("button").on("click", function(){
-    if (d3.select(this).attr("id") === "projectscities"){
-      showprojects();
-    } else if (d3.select(this).attr("id") === "fundingcities"){
-      showfunding();
-    }
+  $("#projectscities").on("click", function() {
+    showprojects();
+  });
+  $("#fundingcities").on("click", function() {
+    showfunding();
   });
 });
 

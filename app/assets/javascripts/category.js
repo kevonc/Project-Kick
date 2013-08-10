@@ -1,17 +1,16 @@
 $(function(){
     displayData("totalprojectsbycategories");
-    $("#projectscategories").on("click", function(){
+    $("#projectscategories").on("click", function() {
         removeData();
         displayData("totalprojectsbycategories");
     });
-    $("#fundingcategories").on("click", function(){
+    $("#fundingcategories").on("click", function() {
         removeData();
         displayData("totalfundingbycategories");
     });
 });
 
 function displayData(dataset){
-
   $.ajax({
     url: '/' + dataset,
     type: 'GET',
