@@ -1,16 +1,30 @@
 $(function(){
   showprojects();
   d3.select("#projectscities").classed("selected-button", true);
+  d3.select("#projectscities").classed("btn", false);
+  $("#projectscities").attr("disabled", true);
 
   $("#projectscities").on("click", function() {
-    d3.select("#projectscities").classed("selected-button", true);
-    d3.select("#fundingcities").classed("selected-button", false);
     showprojects();
+
+    d3.select("#projectscities").classed("selected-button", true);
+    d3.select("#projectscities").classed("btn", false);
+    $("#projectscities").attr("disabled", true);
+
+    d3.select("#fundingcities").classed("selected-button", false);
+    d3.select("#fundingcities").classed("btn", true);
+    $("#fundingcities").attr("disabled", false);
   });
   $("#fundingcities").on("click", function() {
-    d3.select("#fundingcities").classed("selected-button", true);
-    d3.select("#projectscities").classed("selected-button", false);
     showfunding();
+
+    d3.select("#fundingcities").classed("selected-button", true);
+    d3.select("#fundingcities").classed("btn", false);
+    $("#fundingcities").attr("disabled", true);
+
+    d3.select("#projectscities").classed("selected-button", false);
+    d3.select("#projectscities").classed("btn", true);
+    $("#projectscities").attr("disabled", false);
   });
 });
 

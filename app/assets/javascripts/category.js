@@ -1,18 +1,33 @@
 $(function(){
-    displayData("totalprojectsbycategories");
+  displayData("totalprojectsbycategories");
   d3.select("#projectscategories").classed("selected-button", true);
+  d3.select("#projectscategories").classed("btn", false);
+  $("#projectscategories").attr("disabled", true);
 
   $("#projectscategories").on("click", function() {
-        removeData();
-        displayData("totalprojectsbycategories");
+    removeData();
+    displayData("totalprojectsbycategories");
+
     d3.select("#projectscategories").classed("selected-button", true);
+    d3.select("#projectscategories").classed("btn", false);
+    $("#projectscategories").attr("disabled", true);
+
     d3.select("#fundingcategories").classed("selected-button", false);
+    d3.select("#fundingcategories").classed("btn", true);
+    $("#fundingcategories").removeAttr("disabled");
     });
+
     $("#fundingcategories").on("click", function() {
-      d3.select("#fundingcategories").classed("selected-button", true);
-      d3.select("#projectscategories").classed("selected-button", false);
-        removeData();
-        displayData("totalfundingbycategories");
+    removeData();
+    displayData("totalfundingbycategories");
+
+    d3.select("#fundingcategories").classed("selected-button", true);
+    d3.select("#fundingcategories").classed("btn", false);
+    $("#fundingcategories").attr("disabled", true);
+
+    d3.select("#projectscategories").classed("selected-button", false);
+    d3.select("#projectscategories").classed("btn", true);
+    $("#projectscategories").removeAttr("disabled");
     });
 });
 
