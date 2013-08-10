@@ -27,7 +27,7 @@ $(function(){
 
     var xScale = d3.scale.ordinal()
         .domain(d3.range(values.length))
-        .rangeRoundBands([0, w], .03);
+        .rangeRoundBands([0, w], 0.03);
 
     var yScale = d3.scale.linear()
         .domain([0, d3.max(dataset).percentage])
