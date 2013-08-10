@@ -1,9 +1,15 @@
 $(function(){
   showprojects();
+  d3.select("#projectscities").classed("selected-button", true);
+
   $("#projectscities").on("click", function() {
+    d3.select("#projectscities").classed("selected-button", true);
+    d3.select("#fundingcities").classed("selected-button", false);
     showprojects();
   });
   $("#fundingcities").on("click", function() {
+    d3.select("#fundingcities").classed("selected-button", true);
+    d3.select("#projectscities").classed("selected-button", false);
     showfunding();
   });
 });
@@ -19,6 +25,7 @@ function showprojects() {
       dataType: 'JSON'
   }).done(function(data){
     $("circle").remove();
+
     dataEnter = svg.selectAll("circle").data(data);
 
     //setting scale and coordinates for svg USA map
@@ -61,6 +68,7 @@ function showfunding(){
     type: 'GET',
     dataType: 'JSON'
   }).done(function(data){
+
     $("circle").remove();
     //setting d3 selection for enter
       dataEnter = svg.selectAll("circle")

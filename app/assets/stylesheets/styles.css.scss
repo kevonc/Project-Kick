@@ -87,7 +87,7 @@ button {
   margin-top: 0;
   margin-bottom: 12px;
   text-decoration: none;
-  background: #5e5e5e;
+  background: #999;
 }
 
 #overfunding {margin-top:50px}
@@ -104,6 +104,13 @@ button:active {
   -webkit-box-shadow: inset 0 2px 2px rgba(0,0,0, 0.3), inset 0 10px 20px rgba(0,0,0, 0.08);
   -moz-box-shadow: inset 0 2px 2px rgba(0,0,0, 0.3), inset 0 10px 20px rgba(0,0,0, 0.08);
   box-shadow: inset 0 2px 2px rgba(0,0,0, 0.3), inset 0 10px 20px rgba(0,0,0, 0.08);
+}
+
+.selected-button {
+  cursor: pointer;
+  background-color: #333333;
+  text-decoration: none;
+
 }
 
 #about {

@@ -1,10 +1,16 @@
 $(function(){
     displayData("totalprojectsbycategories");
-    $("#projectscategories").on("click", function() {
+  d3.select("#projectscategories").classed("selected-button", true);
+
+  $("#projectscategories").on("click", function() {
         removeData();
         displayData("totalprojectsbycategories");
+    d3.select("#projectscategories").classed("selected-button", true);
+    d3.select("#fundingcategories").classed("selected-button", false);
     });
     $("#fundingcategories").on("click", function() {
+      d3.select("#fundingcategories").classed("selected-button", true);
+      d3.select("#projectscategories").classed("selected-button", false);
         removeData();
         displayData("totalfundingbycategories");
     });
@@ -16,7 +22,10 @@ function displayData(dataset){
     type: 'GET',
     dataType: 'JSON'
   }).done(function(data){
-    var squareSize = 30,
+
+
+
+      var squareSize = 30,
      squaresInRow = 30,
      squaresInColumn = 8,
      gapSize = 2,
@@ -50,8 +59,10 @@ function displayData(dataset){
         .attr("stroke-width", 0)
         .attr("stroke", "#fff");
         if (dataset === "totalprojectsbycategories") {
+
           d3.select("#cat-title").text(d.cat_name + " - " + d.total_projects + " Projects");
         } else {
+
           d3.select("#cat-title").text(d.cat_name + " - $" + d.total_funding);
         }
         d3.select("#sub-cat").insert(subCatBreakdown(d.sub_cat));
