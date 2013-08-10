@@ -33,7 +33,7 @@ function showprojects() {
           d3.select("#citydata")
             .style("left", (d3.event.pageX) + 20 + "px")
             .style("top", (d3.event.pageY) - 30 + "px");
-          d3.select("#city-name").text(data[i].name + '\n' + data[i].total_projects + " Projects");
+          d3.select("#city-name").html(data[i].name + "<br>" + data[i].total_projects + " Projects");
           d3.select("#citydata").classed("hidden", false);
       })
       .on("mouseout", function() {
@@ -41,15 +41,15 @@ function showprojects() {
       })
       .attr("r", 0)
       .attr("transform", function(d, i) {
-        return "translate(" + projection([data[i].longitude, data[i].latitude]) + ")"
+        return "translate(" + projection([data[i].longitude, data[i].latitude]) + ")";
       })
       .transition()
       .duration(1000)
       .attr("r", function(d, i) {
-        return Math.log(data[i].total_projects)*8;
+        return Math.log(data[i].total_projects) * 8;
       })
       .attr("fill", function(d,i){
-        return "hsla(" + Math.log(data[i].total_projects)*200 + ",75%,50%,.6)";
+        return "hsla(" + Math.log(data[i].total_projects) * 200 + ",75%,50%,.6)";
       });
   });
 }
@@ -78,7 +78,7 @@ function showfunding(){
         d3.select("#citydata")
           .style("left", (d3.event.pageX) + 20 + "px")
           .style("top", (d3.event.pageY) - 30 + "px");
-        d3.select("#city-name").text(data[i].name + '\n $' + data[i].total_funding + " Funded");
+        d3.select("#city-name").html(data[i].name + "<br>$" + data[i].funding_currency + " Funded");
         d3.select("#citydata").classed("hidden", false);
       })
       .on("mouseout", function() {
@@ -86,7 +86,7 @@ function showfunding(){
       })
       .attr("r", 0)
       .attr("transform", function(d, i) {
-        return "translate(" + projection([data[i].longitude, data[i].latitude]) + ")"
+        return "translate(" + projection([data[i].longitude, data[i].latitude]) + ")";
       })
       .transition()
       .duration(1000)
@@ -98,13 +98,13 @@ function showfunding(){
         } else if (data[i].total_funding > 70000 && data[i].total_funding < 90000){
           return 21;
         } else if (data[i].total_funding > 100000 && data[i].total_funding < 300000){
-          return 26
+          return 26;
         } else {
           return 30;
         }
       })
       .attr("fill", function(d,i) {
-        return "hsla(" + Math.log(data[i].total_funding)*55 + ",75%,50%,.5)";
+        return "hsla(" + Math.log(data[i].total_funding) * 55 + ",75%,50%,.5)";
     });
   });
 }

@@ -1,13 +1,11 @@
 $(function(){
     displayData("totalprojectsbycategories");
     $("#projectscategories").on("click", function(){
-        d3.select("#category").select("svg").remove();
-        d3.select("#sub-cat").select("svg").remove();
+        removeData();
         displayData("totalprojectsbycategories");
     });
     $("#fundingcategories").on("click", function(){
-        d3.select("#category").select("svg").remove();
-        d3.select("#sub-cat").select("svg").remove();
+        removeData();
         displayData("totalfundingbycategories");
     });
 });
@@ -87,16 +85,9 @@ function displayData(dataset){
         array.push(singleArray);
       }
 
-      // d3.select("#sub-cat").classed("hidden", false);
-
-      ///////////////////////////////////////////////////////
-
       var pieWidth = 500,
           pieHeight = 300,
           radius = Math.min(pieWidth, pieHeight) / 3;
-
-      var color = d3.scale.ordinal()
-        .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
 
       var arc = d3.svg.arc()
         .outerRadius(radius - 10)
@@ -128,15 +119,17 @@ function displayData(dataset){
         .attr("dy", 5)
         .attr("text-anchor", "middle")
         .attr("fill", "#424242")
-       // .attr("fill", function(d, i) { return colorL(i); }) //Colorarray Labels
-       // .attr("display", function(d) { return d.value >= 2 ? null : "none"; })
        .text(function(d, i) { return array[i][0]; })
         .attr("font-family", "Tulpen One")
         .attr("font-size", "22px");
-        // .text(function(d, i) { return array[i][0]; });
 
       d3.select("g").transition()
         .attr("fill", "#ffffff");
     }
   });
+}
+
+function removeData() {
+  d3.select("#category").select("svg").remove();
+  d3.select("#sub-cat").select("svg").remove();
 }
