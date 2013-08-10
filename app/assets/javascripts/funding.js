@@ -1,6 +1,6 @@
 $(function(){
   var w = 960,
-   h = 420,
+      h = 450,
 
   //Create SVG element
    svg = d3.select("#overfunding")
@@ -41,7 +41,7 @@ $(function(){
         return xScale(i);
       })
       .attr("y", function(d) {
-        return h - yScale(d) + 50;
+        return h - yScale(d) + 65;
       })
       .attr("width", xScale.rangeBand())
       .attr("height", function(d) {
@@ -64,27 +64,40 @@ $(function(){
         sortBars();
       });
 
-//Create labels
-    svg.selectAll("text")
+    // Create text labels
+    svg.selectAll("text.names")
       .data(names)
       .enter()
       .append("text")
       .text(function(d,i) {
-        return d + "  -  " + dataset[i].percentage + "%";
-      })
-      .attr("text-anchor", "middle")
-      .attr("x", function(d, i) {
-        return xScale(i) + xScale.rangeBand() / 2;
+        return d;
       })
       .attr("y", function(d,i) {
-        //return h - yScale(d);
-        //return 40 + (h-i);
-        return h - yScale(dataset[i].percentage)+50;
+        return h - yScale(dataset[i].percentage) + 30;
+      });
+
+    // Create percentage labels
+    svg.selectAll("text.values")
+      .data(values)
+      .enter()
+      .append("text")
+      .text(function(d,i) {
+        return d + "%";
+      })
+      .attr("y", function(d,i) {
+        return h - yScale(dataset[i].percentage) + 60;
+      });
+
+    // Attr for both labels
+    svg.selectAll("text")
+      .attr("x", function(d, i) {
+        return xScale(i) + xScale.rangeBand() / 2;
       })
       .attr("text-anchor", "middle")
       .attr("font-family", "Tulpen One")
       .attr("font-size", "25px")
       .attr("fill", "black");
+
   });
 });
 
