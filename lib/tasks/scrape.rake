@@ -8,7 +8,7 @@ task :scrape_recommended => :environment do
   mass_url = "http://www.kickstarter.com/discover/recommended?page="
   project_links = []
 
-  get_project_urls(agent, mass_url, project_links, 200) # max: 566
+  get_project_urls(agent, mass_url, project_links, 200) # max: 565
   create_record(agent, project_links)
 end
 

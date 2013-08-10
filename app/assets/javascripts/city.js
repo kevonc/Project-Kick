@@ -46,10 +46,10 @@ function showprojects() {
       .transition()
       .duration(1000)
       .attr("r", function(d, i) {
-        return Math.log(data[i].total_projects)*8;
+        return Math.log(data[i].total_projects) * 8;
       })
       .attr("fill", function(d,i){
-        return "hsla(" + Math.log(data[i].total_projects)*200 + ",75%,50%,.6)";
+        return "hsla(" + Math.log(data[i].total_projects) * 200 + ",75%,50%,.6)";
       });
   });
 }
@@ -104,7 +104,7 @@ function showfunding(){
         }
       })
       .attr("fill", function(d,i) {
-        return "hsla(" + Math.log(data[i].total_funding)*55 + ",75%,50%,.5)";
+        return "hsla(" + Math.log(data[i].total_funding) * 55 + ",75%,50%,.5)";
     });
   });
 }

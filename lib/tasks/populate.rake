@@ -36,6 +36,7 @@ task :populate_category_projects => :environment do
   theater_projects = compute_total_projects("Theater")
   technology_projects = compute_total_projects("Technology")
 
+  # Number of squares needed for each category
   art = (total_square * art_projects / total_projects)
   comics = art + (total_square * comics_projects / total_projects)
   dance = comics + (total_square * dance_projects / total_projects)
@@ -204,6 +205,7 @@ task :populate_category_funding => :environment do
   theater_funding = compute_total_funding("Theater")
   technology_funding = compute_total_funding("Technology")
 
+  # Number of squares needed for each category
   art = (total_square * art_funding / overall_funding)
   comics = art + (total_square * comics_funding / overall_funding)
   dance = comics + (total_square * dance_funding / overall_funding)
