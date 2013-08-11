@@ -8,7 +8,7 @@ task :scrape_recommended => :environment do
   mass_url = "http://www.kickstarter.com/discover/recommended?page="
   project_links = []
 
-  get_project_urls(agent, mass_url, project_links, 200) # max: 565
+  get_project_urls(agent, mass_url, project_links, 564) # max: 564
   create_record(agent, project_links)
 end
 
@@ -136,6 +136,10 @@ end
 
 def create_record(agent, project_links)
   project_url = "http://www.kickstarter.com"
+  new_york = ["Lower East Side, Manhattan, NY","East Village, Manhattan, NY","Harlem, Manhattan, NY","Soho, Manhattan, NY", "East Harlem, Manhattan, NY", "Midtown, Manhattan, NY","Theatre District, Manhattan, NY", "Manhattan, NY"]
+  brooklyn = ["Williamsburg, Brooklyn, NY", "Brooklyn, NY","Park Slope, Brooklyn, NY","Bushwick, Brooklyn, NY","Park Slope, Brooklyn, NY","Greenpoint, Brooklyn, NY","Bedford, Brooklyn, NY","Coney Island, Brooklyn, NY","Crown Heights, Brooklyn, NY","Fort Greene, Brooklyn, NY"]
+  las_angeles = ["Hollywood, Los Angeles, CA","North Hollywood, Los Angeles, CA","Venice, Los Angeles, CA","Northridge, Los Angeles, CA","Sherman Oaks, Los Angeles, CA","Studio City, Los Angeles, CA","San Pedro, Los Angeles, CA","Granada Hills, Los Angeles, CA","Van Nuys, Los Angeles, CA","Silverlake, Los Angeles, CA"]
+
 
   project_links.each do |url|
     project_page = agent.get(project_url + url)
