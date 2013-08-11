@@ -37,19 +37,11 @@ $(function(){
       .data(values)
       .enter()
       .append("rect")
-      .attr("x", function(d, i) {
-        return xScale(i);
-      })
-      .attr("y", function(d) {
-        return h - yScale(d) + 65;
-      })
+      .attr("x", function(d, i) { return xScale(i); })
+      .attr("y", function(d) { return h - yScale(d) + 365; })
       .attr("width", xScale.rangeBand())
-      .attr("height", function(d) {
-        return d ;
-      })
-      .attr("fill", function(d) {
-        return "#76CC1E";
-      })
+      .attr("height", function(d) { return 0; })
+      .attr("fill", function(d) { return "#76CC1E"; })
       .on("mouseover", function() {
         d3.select(this)
          .attr("fill", "#FC6A6A");
@@ -62,7 +54,12 @@ $(function(){
       })
       .on("click", function() {
         sortBars();
-      });
+      })
+      .transition()
+        .attr("y", function (d, i) { return h - yScale(d) + 65; })
+        .attr("height", function(d) { return d; })
+        .delay(function(d, i) { return i * 100; })
+        .duration(2000);
 
     // Create text labels
     svg.selectAll("text.names")
@@ -73,8 +70,12 @@ $(function(){
         return d;
       })
       .attr("y", function(d,i) {
-        return h - yScale(dataset[i].percentage) + 30;
-      });
+        return h - yScale(dataset[i].percentage) + 300;
+      })
+      .transition()
+        .attr("y", function(d,i) { return h - yScale(dataset[i].percentage) + 30; })
+        .delay(function(d, i) { return i * 100; })
+        .duration(2000);
 
     // Create percentage labels
     svg.selectAll("text.values")
@@ -85,8 +86,12 @@ $(function(){
         return d + "%";
       })
       .attr("y", function(d,i) {
-        return h - yScale(dataset[i].percentage) + 60;
-      });
+        return h - yScale(dataset[i].percentage) + 330;
+      })
+      .transition()
+        .attr("y", function(d,i) { return h - yScale(dataset[i].percentage) + 60; })
+        .delay(function(d, i) { return i * 100; })
+        .duration(2000);
 
     // Attr for both labels
     svg.selectAll("text")
@@ -97,7 +102,6 @@ $(function(){
       .attr("font-family", "Tulpen One")
       .attr("font-size", "25px")
       .attr("fill", "black");
-
   });
 });
 
@@ -112,19 +116,3 @@ var sortBars = function() {
       return xScale(i);
     });
 };
-
-
-
-
-//var xAxis = svg.d3.axis()
-//    .scale(xScale)
-//    .text("test","Test");
-//
-//
-//
-//svg.append("g")
-//    .call(xAxis)
-//    .orient("bottom")
-//    .attr("transform","translate(10,10")
-//    .tickFormat(function(d,i){
-//        return d[i]});
