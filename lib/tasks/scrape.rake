@@ -19,7 +19,7 @@ task :scrape_recently_launched => :environment do
   mass_url = "http://www.kickstarter.com/discover/recently-launched?page="
   project_links = []
 
-  get_project_urls(agent, mass_url, project_links, 10) # max: 61
+  get_project_urls(agent, mass_url, project_links, 53) # max: 53
   create_record(agent, project_links)
 end
 
@@ -30,7 +30,7 @@ task :scrape_ending_soon => :environment do
   mass_url = "http://www.kickstarter.com/discover/ending-soon?page="
   project_links = []
 
-  get_project_urls(agent, mass_url, project_links, 4) # max: 39
+  get_project_urls(agent, mass_url, project_links, 38) # max: 38
   create_record(agent, project_links)
 end
 
@@ -41,7 +41,7 @@ task :scrape_small_projects => :environment do
   mass_url = "http://www.kickstarter.com/discover/small-projects?page="
   project_links = []
 
-  get_project_urls(agent, mass_url, project_links, 20) # max: 17
+  get_project_urls(agent, mass_url, project_links, 14) # max: 14
   create_record(agent, project_links)
 end
 
@@ -118,7 +118,7 @@ task :scrape_each_category => :environment do
   all_links.each do |url|
     project_links = []
 
-    get_project_urls(agent, url, project_links, 1) # run up to 100 pages
+    get_project_urls(agent, url, project_links, 100) # run up to 100 pages
     create_record(agent, project_links)
   end
 end

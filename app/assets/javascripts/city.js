@@ -111,24 +111,24 @@ function showfunding(){
       .transition()
       .duration(1000)
       .attr("r", function(d,i) {
-        if (data[i].total_funding <= 10000){
-          return 5;
-        } else if (data[i].total_funding > 10001 && data[i].total_funding < 50000){
-          return 10;
-        } else if (data[i].total_funding > 50001 && data[i].total_funding < 100000){
-          return 15;
-        } else if (data[i].total_funding > 100001 && data[i].total_funding < 400000){
-          return 20;
-        } else if (data[i].total_funding > 400001 && data[i].total_funding < 900000){
-          return 25;
-        } else if (data[i].total_funding > 1000001 && data[i].total_funding < 3000000){
-          return 30;
-        } else if (data[i].total_funding > 3000001 && data[i].total_funding < 7000000){
-          return 36;
-        } else if (data[i].total_funding > 7000001 && data[i].total_funding < 10000000){
-          return 40;
-        } else {
+         if (data[i].total_funding > 10000000){
           return 47;
+        } else if (data[i].total_funding > 7000000){
+          return 40;
+        } else if (data[i].total_funding > 3000000){
+          return 36;
+        } else if (data[i].total_funding > 1000000){
+          return 28;
+        } else if (data[i].total_funding > 500000){
+          return 22;
+        } else if (data[i].total_funding > 200000){
+          return 17;
+        } else if (data[i].total_funding > 100000){
+          return 12;
+        } else if (data[i].total_funding > 50000){
+          return 8;
+        } else {
+          return 4;
         }
       })
       .attr("fill", function(d,i) {
