@@ -8,7 +8,7 @@ task :scrape_recommended => :environment do
   mass_url = "http://www.kickstarter.com/discover/recommended?page="
   project_links = []
 
-  get_project_urls(agent, mass_url, project_links, 564) # max: 564 - page 464 and 488 break the scrape because of a project with no location
+  get_project_urls(agent, mass_url, project_links, 564) # max: 564 - pages 464 and 488 493 520 break the scrape because of a project with no location
   create_record(agent, project_links)
 end
 
@@ -126,7 +126,7 @@ end
 
 
 def get_project_urls(agent, mass_url, project_links, ending_page)
-  for i in 489..ending_page
+  for i in 494..ending_page
     page = agent.get(mass_url + i.to_s)
     page.search(".project-thumbnail a").each do |project|
       project_links << project.attr("href")
