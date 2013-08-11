@@ -104,15 +104,3 @@ $(function(){
       .attr("fill", "black");
   });
 });
-
-var sortBars = function() {
-  svg.selectAll("rect")
-    .sort(function(a, b) {
-      return d3.descending(a, b);
-    })
-    .transition()
-    .duration(1000)
-    .attr("x", function(d, i) {
-      return xScale(i);
-    });
-};
