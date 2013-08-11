@@ -7,6 +7,9 @@ $(function(){
   $("#projectscategories").on("click", function() {
     removeData();
     displayData("totalprojectsbycategories");
+    $("#page").text("By Total Projects");
+    $("#cat-title").text("");
+    $(".hover").show();
 
     d3.select("#projectscategories").classed("selected-button", true);
     d3.select("#projectscategories").classed("btn", false);
@@ -20,6 +23,9 @@ $(function(){
     $("#fundingcategories").on("click", function() {
     removeData();
     displayData("totalfundingbycategories");
+    $("#page").text("By Total Funding");
+    $("#cat-title").text("");
+    $(".hover").show();
 
     d3.select("#fundingcategories").classed("selected-button", true);
     d3.select("#fundingcategories").classed("btn", false);
@@ -62,7 +68,7 @@ function displayData(dataset){
       .attr("fill", function(d, i) { return d.color; })
       .attr("opacity", 0.5)
       .on("mouseover", function(d, i) {
-        $(".hover").remove();
+        $(".hover").hide();
         d3.select("#sub-cat").select("svg").remove();
         d3.select(this)
         .attr("fill", "#fff")
