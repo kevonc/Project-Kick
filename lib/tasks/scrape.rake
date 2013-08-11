@@ -126,7 +126,7 @@ end
 
 
 def get_project_urls(agent, mass_url, project_links, ending_page)
-  for i in 494..ending_page
+  for i in 520..ending_page
     page = agent.get(mass_url + i.to_s)
     page.search(".project-thumbnail a").each do |project|
       project_links << project.attr("href")
@@ -143,8 +143,7 @@ def create_record(agent, project_links)
     backers = project_page.search("#backers_nav .count data").attr("value").value.to_i
     funding = project_page.search("meta[property='twitter:data1']").attr("content").text.gsub("$","").gsub("£","").gsub(",","").to_i
     goal = project_page.search("meta[property='twitter:label1']").attr("content").text.gsub("PLEDGED OF $","").gsub("PLEDGED OF £","").gsub(",","").to_i
-    latitude = project_page.search("meta[property='kickstarter:location:latitude']").attr("content").value.to_f
-    longitude = project_page.search("meta[property='kickstarter:location:longitude']").attr("content").value.to_f
+
 
     days_left = project_page.search("meta[property='twitter:data2']").attr("content").value.to_i
     days_left == 0 ? expired = true : expired = false
@@ -156,6 +155,8 @@ def create_record(agent, project_links)
 
     # exclude countries other than US
     if city_name.match /\s\w\w$/
+      latitude = project_page.search("meta[property='kickstarter:location:latitude']").attr("content").value.to_f
+      longitude = project_page.search("meta[property='kickstarter:location:longitude']").attr("content").value.to_f
       city = City.find_or_create_by_name(city_name)
       city.latitude = latitude
       city.longitude = longitude
