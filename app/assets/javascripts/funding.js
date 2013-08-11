@@ -95,9 +95,8 @@ $(function(){
       })
       .attr("text-anchor", "middle")
       .attr("font-family", "Tulpen One")
-      .attr("font-size", "25px")
+      .attr("font-size", "28px")
       .attr("fill", "black");
-
   });
 });
 
@@ -112,19 +111,3 @@ var sortBars = function() {
       return xScale(i);
     });
 };
-
-
-
-
-//var xAxis = svg.d3.axis()
-//    .scale(xScale)
-//    .text("test","Test");
-//
-//
-//
-//svg.append("g")
-//    .call(xAxis)
-//    .orient("bottom")
-//    .attr("transform","translate(10,10")
-//    .tickFormat(function(d,i){
-//        return d[i]});

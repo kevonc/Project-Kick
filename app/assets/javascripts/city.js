@@ -3,7 +3,6 @@ $(function(){
   d3.select("#projectscities").classed("selected-button", true);
   d3.select("#projectscities").classed("btn", false);
   d3.select("#projectscities").attr("disabled", true);
-
   d3.select("#projectscities").on("click", function() {
     showprojects();
 
@@ -112,20 +111,28 @@ function showfunding(){
       .transition()
       .duration(1000)
       .attr("r", function(d,i) {
-        if (data[i].total_funding < 40000){
-          return 8;
-        } else if (data[i].total_funding > 48000 && data[i].total_funding < 70000){
-          return 13;
-        } else if (data[i].total_funding > 70000 && data[i].total_funding < 90000){
-          return 21;
-        } else if (data[i].total_funding > 100000 && data[i].total_funding < 300000){
-          return 26;
-        } else {
+        if (data[i].total_funding <= 10000){
+          return 5;
+        } else if (data[i].total_funding > 10001 && data[i].total_funding < 50000){
+          return 10;
+        } else if (data[i].total_funding > 50001 && data[i].total_funding < 100000){
+          return 15;
+        } else if (data[i].total_funding > 100001 && data[i].total_funding < 400000){
+          return 20;
+        } else if (data[i].total_funding > 400001 && data[i].total_funding < 900000){
+          return 25;
+        } else if (data[i].total_funding > 1000001 && data[i].total_funding < 3000000){
           return 30;
+        } else if (data[i].total_funding > 3000001 && data[i].total_funding < 7000000){
+          return 36;
+        } else if (data[i].total_funding > 7000001 && data[i].total_funding < 10000000){
+          return 40;
+        } else {
+          return 47;
         }
       })
       .attr("fill", function(d,i) {
-        return "hsla(" + Math.log(data[i].total_funding) * 55 + ",75%,50%,.5)";
+        return "hsla(" + Math.log(data[i].total_funding) * 155 + ",75%,50%,.5)";
     });
   });
 }
