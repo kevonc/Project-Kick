@@ -126,7 +126,7 @@ end
 
 
 def get_project_urls(agent, mass_url, project_links, ending_page)
-  for i in 520..ending_page
+  for i in 1..ending_page
     page = agent.get(mass_url + i.to_s)
     page.search(".project-thumbnail a").each do |project|
       project_links << project.attr("href")
