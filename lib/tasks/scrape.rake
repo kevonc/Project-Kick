@@ -113,7 +113,7 @@ task :scrape_each_category => :environment do
                'http://www.kickstarter.com/discover/categories/theater/popular?page=',
                'http://www.kickstarter.com/discover/categories/theater/most-funded?page=',
                'http://www.kickstarter.com/discover/categories/theater/successful?page=',
-                ]
+  ]
 
   all_links.each do |url|
     project_links = []
@@ -170,7 +170,7 @@ def create_record(agent, project_links)
 
       # Consider moving this to a function
       categories = {"Art" => ["Art", "Conceptual Art", "Crafts", "Digital Art", "Illustration", "Painting", "Performance Art",
-                    "Mixed Media", "Public Art", "Sculpture"],
+                              "Mixed Media", "Public Art", "Sculpture"],
                     "Comics" => ["Comics"],
                     "Dance" => ["Dance"],
                     "Design" => ["Design", "Graphic Design", "Product Design"],
@@ -179,10 +179,10 @@ def create_record(agent, project_links)
                     "Food" => ["Food"],
                     "Games" => ["Games", "Tabletop Games", "Video Games"],
                     "Music" => ["Music", "Classical Music", "Country & Folk", "Electronic Music", "Hip-Hop", "Indie Rock", "Jazz",
-                             "Pop", "Rock", "World Music"],
+                                "Pop", "Rock", "World Music"],
                     "Photography" => ["Photography"],
                     "Publishing" => ["Publishing", "Art Book", "Children's Book", "Fiction", "Journalism", "Nonfiction", "Periodical",
-                                  "Poetry", "Radio & Podcast"],
+                                     "Poetry", "Radio & Podcast"],
                     "Technology" => ["Technology", "Hardware", "Open Software"],
                     "Theater" => ["Theater"]}
 

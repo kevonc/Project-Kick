@@ -2,9 +2,9 @@ $(function(){
   showprojects();
   d3.select("#projectscities").classed("selected-button", true);
   d3.select("#projectscities").classed("btn", false);
-  $("#projectscities").attr("disabled", true);
+  d3.select("#projectscities").attr("disabled", true);
 
-  $("#projectscities").on("click", function() {
+  d3.select("#projectscities").on("click", function() {
     showprojects();
 
     d3.select("#projectscities").classed("selected-button", true);
