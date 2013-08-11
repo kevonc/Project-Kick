@@ -20,7 +20,7 @@ $(function(){
     var names = [],
         values = [];
 
-    for (var i=0; i<8; i++){
+    for (var i = 0; i < 8; i++){
         names.push(dataset[i].name);
         values.push(dataset[i].percentage);
     }
@@ -100,7 +100,7 @@ $(function(){
       })
       .attr("text-anchor", "middle")
       .attr("font-family", "Tulpen One")
-      .attr("font-size", "25px")
+      .attr("font-size", "28px")
       .attr("fill", "black");
   });
 });
