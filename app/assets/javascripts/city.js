@@ -75,10 +75,12 @@ function showprojects() {
         } else if (data[i].total_projects > 500){
           return 30;
         } else if (data[i].total_projects > 100){
-          return 20;
-        } else if (data[i].total_projects > 50){
-          return 10;
-        } else if (data[i].total_projects > 10){
+          return 22;
+        } else if (data[i].total_projects > 60){
+          return 17;
+        } else if (data[i].total_projects > 40){
+          return 8;
+        } else if (data[i].total_projects > 20){
           return 4;
         } else if (data[i].total_projects > 1){
           return 0;
