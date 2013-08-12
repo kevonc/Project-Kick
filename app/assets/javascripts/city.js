@@ -65,7 +65,22 @@ function showprojects() {
       .transition()
       .duration(1000)
       .attr("r", function(d, i) {
-        return Math.log(data[i].total_projects) * 4;
+//        return Math.log(data[i].total_projects) * 4;
+        if (data[i].total_projects > 5000){
+          return 40;
+        } else if (data[i].total_projects > 3000){
+          return 30;
+        } else if (data[i].total_projects > 1000){
+          return 21;
+        } else if (data[i].total_projects > 500){
+          return 15;
+        } else if (data[i].total_projects > 100){
+          return 10;
+        } else if (data[i].total_projects > 50){
+          return 5;
+        } else if (data[i].total_projects > 20){
+          return 0;
+        }
       })
       .attr("fill", function(d,i){
         return "hsla(" + Math.log(data[i].total_projects) * 200 + ",75%,50%,.35)";
@@ -122,15 +137,13 @@ function showfunding(){
         } else if (data[i].total_funding > 1000000){
           return 23;
         } else if (data[i].total_funding > 500000){
-          return 18;
-        } else if (data[i].total_funding > 200000){
-          return 14;
+          return 15;
+        } else if (data[i].total_funding > 250000){
+          return 9;
         } else if (data[i].total_funding > 100000){
-          return 8;
+          return 4;
         } else if (data[i].total_funding > 30000){
-          return 0; // change to 0
-//        } else {
-//          return 0;
+          return 0;
         }
       })
       .attr("fill", function(d,i) {
