@@ -50,22 +50,22 @@ task :scrape_each_category => :environment do
 
   agent = Mechanize.new
   all_links = [
-    #'http://www.kickstarter.com/discover/categories/art/recommended?page=',
-    #           'http://www.kickstarter.com/discover/categories/art/popular?page=',
-    #           'http://www.kickstarter.com/discover/categories/art/most-funded?page=',
-    #           'http://www.kickstarter.com/discover/categories/art/successful?page=',
-    #
-    #           'http://www.kickstarter.com/discover/categories/comics/recommended?page=',
-    #           'http://www.kickstarter.com/discover/categories/comics/popular?page=',
-    #           'http://www.kickstarter.com/discover/categories/comics/most-funded?page=',
-    #           'http://www.kickstarter.com/discover/categories/comics/successful?page=',
-    #
-    #           'http://www.kickstarter.com/discover/categories/dance/recommended?page=',
-    #           'http://www.kickstarter.com/discover/categories/dance/popular?page=',
-    #           'http://www.kickstarter.com/discover/categories/dance/most-funded?page=',
-    #           'http://www.kickstarter.com/discover/categories/dance/successful?page=',
-    #
-    #           'http://www.kickstarter.com/discover/categories/design/recommended?page=',
+    'http://www.kickstarter.com/discover/categories/art/recommended?page=',
+              'http://www.kickstarter.com/discover/categories/art/popular?page=',
+              'http://www.kickstarter.com/discover/categories/art/most-funded?page=',
+              'http://www.kickstarter.com/discover/categories/art/successful?page=',
+
+              'http://www.kickstarter.com/discover/categories/comics/recommended?page=',
+              'http://www.kickstarter.com/discover/categories/comics/popular?page=',
+              'http://www.kickstarter.com/discover/categories/comics/most-funded?page=',
+              'http://www.kickstarter.com/discover/categories/comics/successful?page=',
+
+              'http://www.kickstarter.com/discover/categories/dance/recommended?page=',
+              'http://www.kickstarter.com/discover/categories/dance/popular?page=',
+              'http://www.kickstarter.com/discover/categories/dance/most-funded?page=',
+              'http://www.kickstarter.com/discover/categories/dance/successful?page=',
+
+              'http://www.kickstarter.com/discover/categories/design/recommended?page=',
                'http://www.kickstarter.com/discover/categories/design/popular?page=',
                'http://www.kickstarter.com/discover/categories/design/most-funded?page=',
                'http://www.kickstarter.com/discover/categories/design/successful?page=',
