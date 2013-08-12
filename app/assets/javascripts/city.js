@@ -65,7 +65,7 @@ function showprojects() {
       .transition()
       .duration(1000)
       .attr("r", function(d, i) {
-        return Math.log(data[i].total_projects);
+        return Math.log(data[i].total_projects) * 4;
       })
       .attr("fill", function(d,i){
         return "hsla(" + Math.log(data[i].total_projects) * 200 + ",75%,50%,.35)";
@@ -111,10 +111,12 @@ function showfunding(){
       .transition()
       .duration(1000)
       .attr("r", function(d,i) {
-         if (data[i].total_funding > 99000000){
+         if (data[i].total_funding > 70000000){
           return 43;
-        } else if (data[i].total_funding > 7000000){
-          return 35;
+        } else if (data[i].total_funding > 10000000){
+          return 37;
+         } else if (data[i].total_funding > 7000000){
+           return 34;
         } else if (data[i].total_funding > 3000000){
           return 30;
         } else if (data[i].total_funding > 1000000){
