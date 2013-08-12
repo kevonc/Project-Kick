@@ -67,17 +67,17 @@ function showprojects() {
       .attr("r", function(d, i) {
 //        return Math.log(data[i].total_projects) * 5;
         if (data[i].total_projects > 3000){
-          return 40;
+          return 50;
         } else if (data[i].total_projects > 2000){
-          return 30;
+          return 45;
         } else if (data[i].total_projects > 1000){
-          return 21;
+          return 40;
         } else if (data[i].total_projects > 500){
-          return 15;
+          return 30;
         } else if (data[i].total_projects > 100){
-          return 10;
+          return 20;
         } else if (data[i].total_projects > 50){
-          return 7;
+          return 10;
         } else if (data[i].total_projects > 10){
           return 4;
         } else if (data[i].total_projects > 1){
