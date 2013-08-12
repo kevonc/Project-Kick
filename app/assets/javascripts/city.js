@@ -111,24 +111,24 @@ function showfunding(){
       .transition()
       .duration(1000)
       .attr("r", function(d,i) {
-         if (data[i].total_funding > 10000000){
-          return 47;
+         if (data[i].total_funding > 99000000){
+          return 43;
         } else if (data[i].total_funding > 7000000){
-          return 40;
+          return 38;
         } else if (data[i].total_funding > 3000000){
-          return 36;
+          return 30;
         } else if (data[i].total_funding > 1000000){
-          return 28;
+          return 23;
         } else if (data[i].total_funding > 500000){
-          return 22;
+          return 18;
         } else if (data[i].total_funding > 200000){
-          return 17;
+          return 14;
         } else if (data[i].total_funding > 100000){
           return 12;
         } else if (data[i].total_funding > 50000){
-          return 8;
-        } else {
-          return 0;
+          return 0; // change to 0
+//        } else {
+//          return 0;
         }
       })
       .attr("fill", function(d,i) {
