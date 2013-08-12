@@ -66,9 +66,9 @@ function showprojects() {
       .duration(1000)
       .attr("r", function(d, i) {
 //        return Math.log(data[i].total_projects) * 4;
-        if (data[i].total_projects > 5000){
+        if (data[i].total_projects > 3000){
           return 40;
-        } else if (data[i].total_projects > 3000){
+        } else if (data[i].total_projects > 2000){
           return 30;
         } else if (data[i].total_projects > 1000){
           return 21;
