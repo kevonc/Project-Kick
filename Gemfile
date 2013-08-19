@@ -13,6 +13,9 @@ gem 'twitter'
 gem 'dotenv'
 gem 'rake'
 
+group :production do
+  gem 'puma'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
