@@ -15,6 +15,10 @@ Kickstarter::Application.routes.draw do
   get '/cities/chart' => 'cities#chart'
   get '/about' => 'home#about', as: "about"
 
+  get '/mu-17609b44-6ffa9c4d-38dfa3e2-0611a17b' do
+    '42'
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
