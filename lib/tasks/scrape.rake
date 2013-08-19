@@ -8,7 +8,7 @@ task :scrape_recommended => :environment do
   mass_url = "http://www.kickstarter.com/discover/recommended?page="
   project_links = []
 
-  get_project_urls(agent, mass_url, project_links, 564) # max: 564 - pages 464 and 488 493 520 break the scrape because of a project with no location
+  get_project_urls(agent, mass_url, project_links, 100) # max: 564 - pages 464 and 488 493 520 break the scrape because of a project with no location
   create_record(agent, project_links)
 end
 
@@ -124,7 +124,6 @@ task :scrape_each_category => :environment do
   end
 end
 
-
 def get_project_urls(agent, mass_url, project_links, ending_page)
   for i in 1..ending_page
     page = agent.get(mass_url + i.to_s)
@@ -135,6 +134,44 @@ def get_project_urls(agent, mass_url, project_links, ending_page)
 end
 
 def create_record(agent, project_links)
+  def include_only_us_projects(city)
+    return true if city.match /\s\w\w$/
+  end
+
+  def find_main_category(category_name)
+    categories = {"Art" => ["Art", "Conceptual Art", "Crafts", "Digital Art", "Illustration", "Painting", "Performance Art",
+                              "Mixed Media", "Public Art", "Sculpture"],
+                  "Comics" => ["Comics"],
+                  "Dance" => ["Dance"],
+                  "Design" => ["Design", "Graphic Design", "Product Design"],
+                  "Fashion" => ["Fashion"],
+                  "Film & Video" => ["Film & Video", "Animation", "Documentary", "Narrative", "Film", "Narrative Film", "Short Film", "Webseries"],
+                  "Food" => ["Food"],
+                  "Games" => ["Games", "Tabletop Games", "Video Games"],
+                  "Music" => ["Music", "Classical Music", "Country & Folk", "Electronic Music", "Hip-Hop", "Indie Rock", "Jazz",
+                              "Pop", "Rock", "World Music"],
+                  "Photography" => ["Photography"],
+                  "Publishing" => ["Publishing", "Art Book", "Children's Book", "Fiction", "Journalism", "Nonfiction", "Periodical",
+                                   "Poetry", "Radio & Podcast"],
+                  "Technology" => ["Technology", "Hardware", "Open Software"],
+                  "Theater" => ["Theater"]}
+
+    categories.each do |key, value|
+      if value.include? category_name
+        return key
+      end
+    end
+  end
+
+  def check_category_overfunded_status(category, overfunded, expired)
+    if category.project_overfunded_percentages.nil?
+      category.project_overfunded_percentages = []
+      category.project_overfunded_percentages << overfunded if expired == true
+    else
+      category.project_overfunded_percentages << overfunded if expired == true
+    end
+  end
+
   project_url = "http://www.kickstarter.com"
 
   project_links.each do |url|
@@ -143,18 +180,12 @@ def create_record(agent, project_links)
     backers = project_page.search("#backers_nav .count data").attr("value").value.to_i
     funding = project_page.search("meta[property='twitter:data1']").attr("content").text.gsub("$","").gsub("£","").gsub(",","").to_i
     goal = project_page.search("meta[property='twitter:label1']").attr("content").text.gsub("PLEDGED OF $","").gsub("PLEDGED OF £","").gsub(",","").to_i
-
-
     days_left = project_page.search("meta[property='twitter:data2']").attr("content").value.to_i
     days_left == 0 ? expired = true : expired = false
-
     overfunded = ((funding.to_f / goal.to_f) * 100).round(4) if expired == true
-    main_category = ""
-
     city_name = project_page.search("#project-metadata .location a").text.gsub("\n","")
 
-    # exclude countries other than US
-    if city_name.match /\s\w\w$/
+    if include_only_us_projects(city_name)
       latitude = project_page.search("meta[property='kickstarter:location:latitude']").attr("content").value.to_f
       longitude = project_page.search("meta[property='kickstarter:location:longitude']").attr("content").value.to_f
       city = City.find_or_create_by_name(city_name)
@@ -168,38 +199,8 @@ def create_record(agent, project_links)
       category = Category.find_or_create_by_name(category_name)
       category.total_projects += 1
       category.total_funding += funding
-
-      # Consider moving this to a function
-      categories = {"Art" => ["Art", "Conceptual Art", "Crafts", "Digital Art", "Illustration", "Painting", "Performance Art",
-                              "Mixed Media", "Public Art", "Sculpture"],
-                    "Comics" => ["Comics"],
-                    "Dance" => ["Dance"],
-                    "Design" => ["Design", "Graphic Design", "Product Design"],
-                    "Fashion" => ["Fashion"],
-                    "Film & Video" => ["Film & Video", "Animation", "Documentary", "Narrative", "Film", "Narrative Film", "Short Film", "Webseries"],
-                    "Food" => ["Food"],
-                    "Games" => ["Games", "Tabletop Games", "Video Games"],
-                    "Music" => ["Music", "Classical Music", "Country & Folk", "Electronic Music", "Hip-Hop", "Indie Rock", "Jazz",
-                                "Pop", "Rock", "World Music"],
-                    "Photography" => ["Photography"],
-                    "Publishing" => ["Publishing", "Art Book", "Children's Book", "Fiction", "Journalism", "Nonfiction", "Periodical",
-                                     "Poetry", "Radio & Podcast"],
-                    "Technology" => ["Technology", "Hardware", "Open Software"],
-                    "Theater" => ["Theater"]}
-
-      categories.each do |key, value|
-        if value.include? category_name
-          main_category = key
-        end
-      end
-
-      category.main_category = main_category
-      if category.project_overfunded_percentages.nil?
-        category.project_overfunded_percentages = []
-        category.project_overfunded_percentages << overfunded if expired == true
-      else
-        category.project_overfunded_percentages << overfunded if expired == true
-      end
+      category.main_category = find_main_category(category_name)
+      check_category_overfunded_status(category, overfunded, expired)
       category.save
 
       puts "Scraping #{city_name}"
