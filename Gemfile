@@ -15,6 +15,10 @@ gem 'rake'
 
 group :production do
   gem 'puma'
+  gem 'memcachier'
+  gem 'rack-cache'
+  gem 'dalli'
+  gem 'kgio'
 end
 
 # Gems used only for assets and not required

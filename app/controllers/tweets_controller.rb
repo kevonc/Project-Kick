@@ -9,5 +9,6 @@ class TweetsController < ApplicationController
     @official_tweets.flatten!.sort! { |a, b| b.created_at <=> a.created_at }
 
     @people_tweets = Twitter.search("#kickstarter -rt", :lang => "en").attrs[:statuses]
+    expires_in 10.minutes, public: true
   end
 end
