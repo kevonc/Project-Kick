@@ -12,7 +12,6 @@ gem 'activerecord-postgres-hstore'
 gem 'twitter'
 gem 'dotenv'
 gem 'rake'
-gem 'newrelic_rpm'
 
 
 # Gems used only for assets and not required
