@@ -1,19 +1,19 @@
 #encoding: utf-8
 require 'mechanize'
 
+desc "Scrape through Kickstarter Overall Recommended Page"
 task :scrape_recommended => :environment do
-  desc "Scrape through Kickstarter Overall Recommended Page"
 
   agent = Mechanize.new
   mass_url = "http://www.kickstarter.com/discover/recommended?page="
   project_links = []
 
-  get_project_urls(agent, mass_url, project_links, 15) # max: 564 - pages 464 and 488 493 520 break the scrape because of a project with no location
+  get_project_urls(agent, mass_url, project_links, 150) # max: 564 - pages 464 and 488 493 520 break the scrape because of a project with no location
   create_record(agent, project_links)
 end
 
+desc "Scrape through Kickstarter Recently Launched Page"
 task :scrape_recently_launched => :environment do
-  desc "Scrape through Kickstarter Recently Launched Page"
 
   agent = Mechanize.new
   mass_url = "http://www.kickstarter.com/discover/recently-launched?page="
@@ -23,8 +23,8 @@ task :scrape_recently_launched => :environment do
   create_record(agent, project_links)
 end
 
+desc "Scrape through Kickstarter Ending Soon Page"
 task :scrape_ending_soon => :environment do
-  desc "Scrape through Kickstarter Ending Soon Page"
 
   agent = Mechanize.new
   mass_url = "http://www.kickstarter.com/discover/ending-soon?page="
@@ -34,8 +34,8 @@ task :scrape_ending_soon => :environment do
   create_record(agent, project_links)
 end
 
+desc "Scrape through Kickstarter Small Projects Page"
 task :scrape_small_projects => :environment do
-  desc "Scrape through Kickstarter Small Projects Page"
 
   agent = Mechanize.new
   mass_url = "http://www.kickstarter.com/discover/small-projects?page="
@@ -45,8 +45,8 @@ task :scrape_small_projects => :environment do
   create_record(agent, project_links)
 end
 
+desc "Scrape through Kickstarter Individual Category Page"
 task :scrape_each_category => :environment do
-  desc "Scrape through Kickstarter Individual Category Page"
 
   agent = Mechanize.new
   all_links = [
