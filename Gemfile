@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby "1.9.3"
 gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
@@ -12,6 +13,7 @@ gem 'activerecord-postgres-hstore'
 gem 'twitter'
 gem 'dotenv'
 gem 'rake'
+gem 'newrelic_rpm'
 
 group :production do
   gem 'puma'
