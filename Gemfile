@@ -19,6 +19,7 @@ group :production do
   gem 'rack-cache'
   gem 'dalli'
   gem 'kgio'
+  gem 'rails_12factor'
 end
 
 # Gems used only for assets and not required
