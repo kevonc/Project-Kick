@@ -7,7 +7,6 @@ gem 'rails', '3.2.13'
 
 gem 'pg'
 gem 'mechanize'
-gem 'devise'
 gem 'activerecord-postgres-hstore'
 gem 'twitter'
 gem 'dotenv'
