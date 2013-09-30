@@ -13,7 +13,6 @@ gem 'activerecord-postgres-hstore'
 gem 'twitter'
 gem 'dotenv'
 gem 'rake'
-gem 'newrelic_rpm'
 
 group :production do
   gem 'puma'
