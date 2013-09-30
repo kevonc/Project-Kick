@@ -1,5 +1,4 @@
 Kickstarter::Application.routes.draw do
-  devise_for :users
 
   root :to => 'cities#index'
   get '/totalprojectsbycities' => "cities#totalprojects"
